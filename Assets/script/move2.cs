@@ -19,6 +19,7 @@ public class move2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //プレイヤー２操作スクリプト
         GetComponent<AnimationControll>().SetOnGround(Ground);
         g = Ground;
         vel = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
