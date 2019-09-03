@@ -30,13 +30,6 @@ public class move2 : MonoBehaviour
             velY = jumpPow;
             Ground = false;
         }
-        //if(!Ground)
-        //{
-        //    velY += Physics.gravity.y;
-        //}
-        //else
-        //{
-        //    velY = 0f;
-        //}
+
     }
 }
