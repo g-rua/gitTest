@@ -19,7 +19,7 @@ public class move1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //プレイヤー１操作スクリプトk
+        //プレイヤー１操作スクリプト
         GetComponent<AnimationControll>().SetOnGround(Ground);
         g = Ground;
         vel =new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
