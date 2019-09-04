@@ -21,11 +21,21 @@ public class AnimationControll : MonoBehaviour
         {
             anim.SetBool("Grounded", true);
         }
+        else
+        {
+            anim.SetBool("Grounded", false);
+        }
+
     }
 
     public void SetOnGround(bool ground)
     {
         playerOnGround = ground;
+    }
+
+    public void SetWalkAnimation(float vertical)
+    {
+        anim.SetFloat("MoveSpeed",vertical);
     }
 
 }

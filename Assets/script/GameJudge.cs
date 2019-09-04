@@ -43,12 +43,12 @@ public class GameJudge : MonoBehaviour
             
 
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //テスト用、ゲームスコアをリセットしタイトルへ
-            GameScore.Reset();
-            fader.SetActive(true);
-            fader.GetComponent<FadeController>().FadeOut("title", Color.black);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    //テスト用、ゲームスコアをリセットしタイトルへ
+        //    GameScore.Reset();
+        //    fader.SetActive(true);
+        //    fader.GetComponent<FadeController>().FadeOut("title", Color.black);
+        //}
     }
 }
