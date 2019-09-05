@@ -5,33 +5,53 @@ using UnityEngine;
 public class move1 : MonoBehaviour
 {
     [SerializeField] AnimationControll ac;
-    private Vector3 vel;
+    [SerializeField] GameObject triggerCheckCollider;
+    [SerializeField] CarryObject carryObj;
+    [SerializeField] TriggerChecker tc;
+    private CarryItemAction itemAction;
+    public GameObject haveObj;
+    public Vector3 vel;
     private float horizontal;
     private float vertical;
     private float speed = 5f;
     private float jumpPow = 10f;
-    private float velY=0f;
+    public float velY = 0f;
     public bool g;
+    public bool isCarry;
     public bool Ground { get; set; }
     // Start is called before the first frame update
     void Start()
     {
         Ground = false;
+        itemAction = GetComponent<CarryItemAction>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //プレイヤー１操作用
+        //プレイヤー２操作用
         ac.SetOnGround(Ground);
-
         g = Ground;
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        //移動アニメーションの設定
         ac.SetWalkAnimation(vertical);
-        //vel.x = horizontal;
-        //vel.z = vertical;
+        //移動
+        MoveMent();
+        //アイテムの持ち運び
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ItemCarry();
+        }
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            itemAction.ItemAction(haveObj);
+        }
+        transform.Rotate(Vector3.up, horizontal * 3f);
+    }
 
+    private void MoveMent()
+    {
         if (vel.y <= 0f)
         {
             velY = 0f;
@@ -44,15 +64,45 @@ public class move1 : MonoBehaviour
         }
 
 
+        Jump();
 
+        vel.y += velY;
+        transform.position += ((transform.forward) * (speed * vertical) + vel) * Time.deltaTime;
+    }
+
+    private void Jump()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && Ground)
         {
+
             Debug.Log("jump");
             velY = 1.13f;
             Ground = false;
         }
-        vel.y += velY;
-        transform.position += ((transform.forward) * (speed * vertical) + vel) * Time.deltaTime;
-        transform.Rotate(Vector3.up, horizontal * 3f);
     }
+
+    private void ItemCarry()
+    {
+        //アイテムを手放す
+        if (isCarry && haveObj != null)
+        {
+            isCarry = false;
+            haveObj.transform.parent = null;
+            haveObj = null;
+            carryObj.ObjRelease();
+        }
+        //アイテムを持ち上げる
+        if (!isCarry && tc.GetObject().transform.parent == null)
+        {
+            isCarry = true;
+            carryObj.SetCarryObject(tc.GetObject());
+            haveObj = tc.GetObject();
+            haveObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            tc.GetObject().transform.position = triggerCheckCollider.transform.position;
+            tc.GetObject().transform.parent = transform;
+            tc.Carry();
+        }
+
+    }
+
 }
