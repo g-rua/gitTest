@@ -42,14 +42,14 @@ public class GameJudge : MonoBehaviour
         }
 
         //テスト用のスコア加算
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            GameScore.scoreA += scoreA;
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            GameScore.scoreB += scoreB;
-        }
+        //if(Input.GetKeyDown(KeyCode.A))
+        //{
+        //    GameScore.scoreA += scoreA;
+        //}
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    GameScore.scoreB += scoreB;
+        //}
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
