@@ -15,7 +15,12 @@ public class move2 : MonoBehaviour
     private float vertical;
     private float speed = 5f;
     private float jumpPow = 10f;
+    public int jumpFlame = 0;
+    public int maxJumpFlame = 10;
+    public int harfJumpFlame = 5;
     public float velY = 0f;
+    public float harfVelY = 0.87f;
+    public float maxVelY = 1.13f;
     public bool g;
     public bool isCarry;
     public bool Ground { get; set; }
@@ -30,6 +35,7 @@ public class move2 : MonoBehaviour
     void Update()
     {
         //プレイヤー２操作用
+        velY = Mathf.Clamp(velY, 0f, maxVelY);
         ac.SetOnGround(Ground);
         g = Ground;
         horizontal = Input.GetAxis("Horizontal2");
@@ -56,6 +62,8 @@ public class move2 : MonoBehaviour
         {
             velY = 0f;
             vel.y = 0f;
+
+
         }
         else
         {
@@ -64,21 +72,44 @@ public class move2 : MonoBehaviour
         }
 
 
-        Jump();
+        if(Input.GetKey(KeyCode.X)&&Ground)
+        {
+            jumpFlame++;
 
+            if(jumpFlame>=maxJumpFlame)
+            {
+                DecideJumpPower(jumpFlame);
+                Jump();
+            }
+        }
+        if(Input.GetKeyUp(KeyCode.X)&&Ground)
+        {
+            Debug.Log("harf");
+            DecideJumpPower(jumpFlame);
+            Jump();
+        }
+        Debug.Log(jumpFlame);
         vel.y += velY;
         transform.position += ((transform.forward) * (speed * vertical) + vel) * Time.deltaTime;
     }
 
-    private void Jump()
+    private void DecideJumpPower(int flame)
     {
-        if (Input.GetKeyDown(KeyCode.X) && Ground)
+        if(flame<=harfJumpFlame)
         {
-
-            Debug.Log("jump");
-            velY = 1.13f;
-            Ground = false;
+            velY = harfVelY;
         }
+        else
+        {
+            velY =maxVelY;
+        }
+    }
+
+    private void Jump()
+    { 
+        Debug.Log("jump");
+        jumpFlame = 0;
+        Ground = false;
     }
 
     private void ItemCarry()

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CarryItem
+  - ChangeColorTile
   layers:
   - Default
   - TransparentFX

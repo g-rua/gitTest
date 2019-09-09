@@ -15,7 +15,12 @@ public class move1 : MonoBehaviour
     private float vertical;
     private float speed = 5f;
     private float jumpPow = 10f;
+    public int jumpFlame = 0;
+    public int maxJumpFlame = 10;
+    public int harfJumpFlame = 5;
     public float velY = 0f;
+    public float harfVelY = 0.87f;
+    public float maxVelY = 1.13f;
     public bool g;
     public bool isCarry;
     public bool Ground { get; set; }
@@ -29,7 +34,7 @@ public class move1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //プレイヤー２操作用
+        //プレイヤー1操作用
         ac.SetOnGround(Ground);
         g = Ground;
         horizontal = Input.GetAxis("Horizontal");
@@ -63,22 +68,43 @@ public class move1 : MonoBehaviour
             vel.y += velY;
         }
 
+        if (Input.GetKey(KeyCode.Space) && Ground)
+        {
+            jumpFlame++;
 
-        Jump();
-
+            if (jumpFlame >= maxJumpFlame)
+            {
+                DecideJumpPower(jumpFlame);
+                Jump();
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.Space) && Ground)
+        {
+            Debug.Log("harf");
+            DecideJumpPower(jumpFlame);
+            Jump();
+        }
         vel.y += velY;
         transform.position += ((transform.forward) * (speed * vertical) + vel) * Time.deltaTime;
     }
 
+    private void DecideJumpPower(int flame)
+    {
+        if (flame <= harfJumpFlame)
+        {
+            velY = harfVelY;
+        }
+        else
+        {
+            velY = maxVelY;
+        }
+    }
+
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Ground)
-        {
-
-            Debug.Log("jump");
-            velY = 1.13f;
-            Ground = false;
-        }
+        Debug.Log("jump");
+        jumpFlame = 0;
+        Ground = false;
     }
 
     private void ItemCarry()

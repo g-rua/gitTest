@@ -6,6 +6,8 @@ public class TriggerChecker : MonoBehaviour
 {
     public bool canCarry = false;
     public GameObject item;
+    public Color teamColor;
+    public int teamIndex;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +31,22 @@ public class TriggerChecker : MonoBehaviour
         canCarry = false;
     }
 
+    public void SetTeamColor(Color color)
+    {
+        teamColor = color;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if(other.tag=="CarryItem")
         {
             canCarry = true;
             item = other.gameObject;
+        }
+        if(other.tag=="ChangeColorTile")
+        {
+            other.GetComponent<BlockColorChange>().ChangeColor(teamColor);
+            other.GetComponent<BlockColorChange>().SetTeamIndex(teamIndex);
         }
     }
 
