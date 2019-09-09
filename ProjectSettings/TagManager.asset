@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CarryItem
   - ChangeColorTile
+  - JumpPanel
+  - RaseGoal
   layers:
   - Default
   - TransparentFX

@@ -19,8 +19,8 @@ public class move2 : MonoBehaviour
     public int maxJumpFlame = 10;
     public int harfJumpFlame = 5;
     public float velY = 0f;
-    public float harfVelY = 0.87f;
-    public float maxVelY = 1.13f;
+    public float harfVelY = 0.95f;
+    public float maxVelY = 1.4f;
     public bool g;
     public bool isCarry;
     public bool Ground { get; set; }
@@ -67,7 +67,7 @@ public class move2 : MonoBehaviour
         }
         else
         {
-            velY += -8f * Time.deltaTime;
+            velY += -0.15f;
             vel.y += velY;
         }
 
@@ -88,6 +88,11 @@ public class move2 : MonoBehaviour
             DecideJumpPower(jumpFlame);
             Jump();
         }
+        if(GetComponent<TriggerChecker>().jumpPanelFlag)
+        {
+            HighJump();
+        }
+
         Debug.Log(jumpFlame);
         vel.y += velY;
         transform.position += ((transform.forward) * (speed * vertical) + vel) * Time.deltaTime;
@@ -110,6 +115,13 @@ public class move2 : MonoBehaviour
         Debug.Log("jump");
         jumpFlame = 0;
         Ground = false;
+    }
+
+    private void HighJump()
+    {
+        jumpFlame = 0;
+        Ground = false;
+        velY = 1.5f;
     }
 
     private void ItemCarry()

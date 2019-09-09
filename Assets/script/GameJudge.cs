@@ -5,6 +5,12 @@ using UnityEngine;
 public class GameJudge : MonoBehaviour
 {
     [SerializeField] GameObject fader;
+    public enum GameType{
+        gt_carry,
+        gt_tileChange,
+        gt_race,
+    };
+    GameType gameType;
     int scoreA;
     int scoreB;
     // Start is called before the first frame update
@@ -17,6 +23,24 @@ public class GameJudge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        switch (gameType)
+        {
+            case GameType.gt_carry:
+                CarryJudge();
+                break;
+            case GameType.gt_tileChange:
+                TileChangeJudge();
+                break;
+            case GameType.gt_race:
+                RaceJudge();
+                break;
+            default:
+                fader.GetComponent<FadeController>().FadeOut("title",Color.black);
+                break;
+
+        }
+
         //テスト用のスコア加算
         if(Input.GetKeyDown(KeyCode.A))
         {
@@ -51,4 +75,27 @@ public class GameJudge : MonoBehaviour
         //    fader.GetComponent<FadeController>().FadeOut("title", Color.black);
         //}
     }
+    public void SetGameType(int gameIndex)
+    {
+        gameType = (GameType)gameIndex;
+    }
+
+    private void CarryJudge()
+    {
+
+    }
+
+    private void TileChangeJudge()
+    {
+
+    }
+
+    private void RaceJudge()
+    {
+
+    }
+
+
+
+
 }

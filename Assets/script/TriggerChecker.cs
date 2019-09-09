@@ -8,6 +8,7 @@ public class TriggerChecker : MonoBehaviour
     public GameObject item;
     public Color teamColor;
     public int teamIndex;
+    public bool jumpPanelFlag;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,10 @@ public class TriggerChecker : MonoBehaviour
             other.GetComponent<BlockColorChange>().ChangeColor(teamColor);
             other.GetComponent<BlockColorChange>().SetTeamIndex(teamIndex);
         }
+        if(other.tag=="JumpPanel")
+        {
+            jumpPanelFlag = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -56,6 +61,10 @@ public class TriggerChecker : MonoBehaviour
         {
             canCarry = false;
             item = null;
+        }
+        if (other.tag == "JumpPanel")
+        {
+            jumpPanelFlag = false;
         }
     }
 
