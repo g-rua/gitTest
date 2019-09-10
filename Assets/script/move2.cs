@@ -20,7 +20,7 @@ public class move2 : MonoBehaviour
     public int harfJumpFlame = 5;
     public float velY = 0f;
     public float harfVelY = 0.95f;
-    public float maxVelY = 1.4f;
+    public float maxVelY = 1.2f;
     public bool g;
     public bool isCarry;
     public bool Ground { get; set; }

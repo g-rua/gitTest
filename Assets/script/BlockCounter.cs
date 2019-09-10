@@ -24,11 +24,11 @@ public class BlockCounter : MonoBehaviour
         {
             if(blocks.transform.GetChild(i).GetComponent<BlockColorChange>().teamIndex==1)
             {
-                redColorBlock++;
+                blueColorBlock++;
             }
             if (blocks.transform.GetChild(i).GetComponent<BlockColorChange>().teamIndex == 2)
             {
-                blueColorBlock++;
+                redColorBlock++;
             }
         }
         Debug.Log(redColorBlock);

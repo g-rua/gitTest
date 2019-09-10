@@ -10,7 +10,7 @@ public class GameJudge : MonoBehaviour
         gt_tileChange,
         gt_race,
     };
-    GameType gameType;
+    public GameType gameType;
     int scoreA;
     int scoreB;
     // Start is called before the first frame update

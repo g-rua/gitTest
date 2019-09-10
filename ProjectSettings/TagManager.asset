@@ -8,6 +8,8 @@ TagManager:
   - ChangeColorTile
   - JumpPanel
   - RaseGoal
+  - FxTemporaire
+  - Bom
   layers:
   - Default
   - TransparentFX
