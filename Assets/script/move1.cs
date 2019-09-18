@@ -20,7 +20,7 @@ public class move1 : MonoBehaviour
     public int harfJumpFlame = 5;
     public float velY = 0f;
     public float harfVelY = 0.95f;
-    public float maxVelY = 1.4f;
+    public float maxVelY = 1.2f;
     public bool g;
     public bool isCarry;
     public bool Ground { get; set; }
@@ -35,12 +35,15 @@ public class move1 : MonoBehaviour
     void Update()
     {
         //プレイヤー1操作用
-        ac.SetOnGround(Ground);
-        g = Ground;
+        velY = Mathf.Clamp(velY, 0f, maxVelY);
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        //移動アニメーションの設定
-        ac.SetWalkAnimation(vertical);
+
+        Animations();
+
+        g = Ground;
+
+
         //移動
         MoveMent();
         //アイテムの持ち運び
@@ -117,6 +120,20 @@ public class move1 : MonoBehaviour
         jumpFlame = 0;
         Ground = false;
         velY = 1.5f;
+    }
+
+    private void Animations()
+    {
+        ac.SetOnGround(Ground);
+        //移動アニメーションの設定
+        ac.SetMovement(vertical);
+        ac.ExcuteMotion(AnimationControll.MotionType.mt_walk);
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            ac.ExcuteMotion(AnimationControll.MotionType.mt_wave);
+        }
+
     }
 
     private void ItemCarry()

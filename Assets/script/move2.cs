@@ -36,12 +36,10 @@ public class move2 : MonoBehaviour
     {
         //プレイヤー２操作用
         velY = Mathf.Clamp(velY, 0f, maxVelY);
-        ac.SetOnGround(Ground);
-        g = Ground;
         horizontal = Input.GetAxis("Horizontal2");
         vertical = Input.GetAxis("Vertical2");
-        //移動アニメーションの設定
-        ac.SetWalkAnimation(vertical);
+        Animations();
+        g = Ground;
         //移動
         MoveMent();
         //アイテムの持ち運び
@@ -49,6 +47,7 @@ public class move2 : MonoBehaviour
         {
             ItemCarry();
         }
+        //持っているアイテム毎のアクションを行う
         if(Input.GetKeyDown(KeyCode.Z))
         {
             itemAction.ItemAction(haveObj);
@@ -58,36 +57,42 @@ public class move2 : MonoBehaviour
 
     private void MoveMent()
     {
+        //ジャンプの処理
         if (vel.y <= 0f)
         {
+            //0以下にになったらめり込まないように減算をやめる
             velY = 0f;
             vel.y = 0f;
-
-
         }
         else
         {
+            //0以上なら加速度に重力を加算しつつ上昇させる
             velY += -0.15f;
             vel.y += velY;
         }
 
-
+        //ジャンプの区別
         if(Input.GetKey(KeyCode.X)&&Ground)
         {
+            //小ジャンプか大ジャンプを区別するためにインクリメント
             jumpFlame++;
 
+            //一定値以上になったら強制ジャンプ
             if(jumpFlame>=maxJumpFlame)
             {
                 DecideJumpPower(jumpFlame);
                 Jump();
             }
         }
+
+        //即離した場合
         if(Input.GetKeyUp(KeyCode.X)&&Ground)
         {
             Debug.Log("harf");
             DecideJumpPower(jumpFlame);
             Jump();
         }
+        //ジャンプパネルを踏んだら大ジャンプより高いジャンプをする
         if(GetComponent<TriggerChecker>().jumpPanelFlag)
         {
             HighJump();
@@ -122,6 +127,19 @@ public class move2 : MonoBehaviour
         jumpFlame = 0;
         Ground = false;
         velY = 1.5f;
+    }
+
+    private void Animations()
+    {
+        //animationsControllが着地しているか見れるために
+        ac.SetOnGround(Ground);
+        //移動アニメーションの設定
+        ac.SetMovement(vertical);
+        ac.ExcuteMotion(AnimationControll.MotionType.mt_walk);
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            ac.ExcuteMotion(AnimationControll.MotionType.mt_opendoor);
+        }
     }
 
     private void ItemCarry()
