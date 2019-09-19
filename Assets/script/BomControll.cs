@@ -24,4 +24,14 @@ public class BomControll : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="InstantExplosionPanel")
+        {
+            GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+    }
+
 }
