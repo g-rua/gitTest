@@ -129,10 +129,7 @@ public class move1 : MonoBehaviour
         ac.SetMovement(vertical);
         ac.ExcuteMotion(AnimationControll.MotionType.mt_walk);
 
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            ac.ExcuteMotion(AnimationControll.MotionType.mt_wave);
-        }
+
 
     }
 

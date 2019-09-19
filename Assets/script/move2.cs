@@ -136,7 +136,7 @@ public class move2 : MonoBehaviour
         //移動アニメーションの設定
         ac.SetMovement(vertical);
         ac.ExcuteMotion(AnimationControll.MotionType.mt_walk);
-        if(Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             ac.ExcuteMotion(AnimationControll.MotionType.mt_opendoor);
         }
