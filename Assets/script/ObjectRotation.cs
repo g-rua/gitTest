@@ -18,6 +18,9 @@ public class ObjectRotation : MonoBehaviour
     void Update()
     {
         rot += rotSpeed*Time.deltaTime;
-        obj.transform.Rotate(Vector3.right, rot);
+        if (obj != null)
+        {
+            obj.transform.Rotate(Vector3.right, rot);
+        }
     }
 }
