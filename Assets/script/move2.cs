@@ -4,29 +4,35 @@ using UnityEngine;
 
 public class move2 : MonoBehaviour
 {
+    [SerializeField] Camera cam;
     [SerializeField] AnimationControll ac;
     [SerializeField] GameObject triggerCheckCollider;
     [SerializeField] CarryObject carryObj;
     [SerializeField] TriggerChecker tc;
     private CarryItemAction itemAction;
+    private Vector3 lastPos;
+    private Vector3 diff;
+    private Vector3 moveVel;
     public GameObject haveObj;
     public Vector3 vel;
     private float horizontal;
     private float vertical;
     private float speed = 5f;
     private float jumpPow = 10f;
+    private float rotY;
     public int jumpFlame = 0;
     public int maxJumpFlame = 10;
     public int harfJumpFlame = 5;
     public float velY = 0f;
     public float harfVelY = 0.95f;
-    public float maxVelY = 1.2f;
+    public float maxVelY = 1.1f;
     public bool g;
     public bool isCarry;
     public bool Ground { get; set; }
     // Start is called before the first frame update
     void Start()
     {
+        lastPos = transform.position;
         Ground = false;
         itemAction = GetComponent<CarryItemAction>();
     }
@@ -52,7 +58,6 @@ public class move2 : MonoBehaviour
         {
             itemAction.ItemAction(haveObj);
         }
-        transform.Rotate(Vector3.up, horizontal * 3f);
     }
 
     private void MoveMent()
@@ -70,7 +75,10 @@ public class move2 : MonoBehaviour
             velY += -0.15f;
             vel.y += velY;
         }
-
+        moveVel.x = horizontal;
+        moveVel.z = vertical;
+        diff = transform.position - lastPos;
+        lastPos = transform.position;
         //ジャンプの区別
         if(Input.GetKey(KeyCode.X)&&Ground)
         {
@@ -99,9 +107,24 @@ public class move2 : MonoBehaviour
         }
 
         Debug.Log(jumpFlame);
+       
         vel.y += velY;
-        transform.position += ((transform.forward) * (speed * vertical) + vel) * Time.deltaTime;
+        //transform.position += ((transform.forward) * (speed*vertical) + vel) * Time.deltaTime;
+
+        Vector3 cameraForward = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 moveForward = (cameraForward * vertical + cam.transform.right * horizontal);
+        Vector3 velocity = transform.forward * speed * Time.deltaTime;
+        transform.position += ((moveForward * speed) * Time.deltaTime) + vel;
+
+        if (moveForward != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(moveForward);
+        }
+
+
     }
+
+
 
     private void DecideJumpPower(int flame)
     {
