@@ -114,7 +114,7 @@ public class move2 : MonoBehaviour
         Vector3 cameraForward = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1)).normalized;
         Vector3 moveForward = (cameraForward * vertical + cam.transform.right * horizontal);
         Vector3 velocity = transform.forward * speed * Time.deltaTime;
-        transform.position += ((moveForward * speed) * Time.deltaTime) + vel;
+        transform.position += (((moveForward * speed)+ vel) * Time.deltaTime) ;
 
         if (moveForward != Vector3.zero)
         {
@@ -157,7 +157,9 @@ public class move2 : MonoBehaviour
         //animationsControllが着地しているか見れるために
         ac.SetOnGround(Ground);
         //移動アニメーションの設定
-        ac.SetMovement(vertical);
+        ac.SetMovement(vertical,horizontal);
+        //ac.SetMovement(horizontal);
+
         ac.ExcuteMotion(AnimationControll.MotionType.mt_walk);
         if (Input.GetKeyDown(KeyCode.Q))
         {

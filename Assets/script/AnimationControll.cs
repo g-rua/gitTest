@@ -63,9 +63,24 @@ public class AnimationControll : MonoBehaviour
         playerOnGround = ground;
     }
 
-    public void SetMovement(float vert)
+    public void SetMovement(float vert,float hori)
     {
-        movement = vert;
+        vert = Mathf.Clamp(vert, -1, 1);
+        hori = Mathf.Clamp(hori, -1, 1);
+        if (vert<0f)
+        {
+            vert *= -1f;
+        }
+        if (hori < 0f)
+        {
+            hori *= -1f;
+        }
+        float moveanim=vert+hori;
+        if((vert==1f&&hori==-1f)|| (vert == -1f && hori == 1f))
+        {
+            moveanim = 1f;
+        }
+        movement = moveanim;
     }
 
 }

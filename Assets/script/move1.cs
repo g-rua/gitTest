@@ -126,7 +126,7 @@ public class move1 : MonoBehaviour
     {
         ac.SetOnGround(Ground);
         //移動アニメーションの設定
-        ac.SetMovement(vertical);
+        ac.SetMovement(vertical,horizontal);
         ac.ExcuteMotion(AnimationControll.MotionType.mt_walk);
 
 
