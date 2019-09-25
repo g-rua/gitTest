@@ -10,8 +10,6 @@ public class move2 : MonoBehaviour
     [SerializeField] CarryObject carryObj;
     [SerializeField] TriggerChecker tc;
     private CarryItemAction itemAction;
-    private Vector3 lastPos;
-    private Vector3 diff;
     private Vector3 moveVel;
     public GameObject haveObj;
     public Vector3 vel;
@@ -28,11 +26,11 @@ public class move2 : MonoBehaviour
     public float maxVelY = 1.1f;
     public bool g;
     public bool isCarry;
+
     public bool Ground { get; set; }
     // Start is called before the first frame update
     void Start()
     {
-        lastPos = transform.position;
         Ground = false;
         itemAction = GetComponent<CarryItemAction>();
     }
@@ -58,6 +56,9 @@ public class move2 : MonoBehaviour
         {
             itemAction.ItemAction(haveObj);
         }
+
+
+
     }
 
     private void MoveMent()
@@ -77,8 +78,7 @@ public class move2 : MonoBehaviour
         }
         moveVel.x = horizontal;
         moveVel.z = vertical;
-        diff = transform.position - lastPos;
-        lastPos = transform.position;
+
         //ジャンプの区別
         if(Input.GetKey(KeyCode.X)&&Ground)
         {

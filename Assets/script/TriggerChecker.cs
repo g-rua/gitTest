@@ -53,6 +53,11 @@ public class TriggerChecker : MonoBehaviour
         {
             jumpPanelFlag = true;
         }
+        if(other.tag=="ShuffleDoors")
+        {
+            transform.position = other.gameObject.GetComponent<StageProceedOrReturn>().ProceedOrReturn();
+        }
+
     }
 
     public void OnTriggerExit(Collider other)
