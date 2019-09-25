@@ -24,7 +24,7 @@ public class BomBlowAway : MonoBehaviour
         {
             transform.parent = null;
             targetVec = other.transform.position - transform.position;
-            other.gameObject.transform.position += targetVec * scale;
+            other.gameObject.GetComponent<CharaCon>().SetVel(targetVec * scale);
         }
     }
 

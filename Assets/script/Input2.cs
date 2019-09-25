@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Input2 : MonoBehaviour
 {
-    [SerializeField] move2 move2; 
+
     // Start is called before the first frame update
     void Start()
     {

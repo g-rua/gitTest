@@ -58,6 +58,13 @@ public class TriggerChecker : MonoBehaviour
             transform.position = other.gameObject.GetComponent<StageProceedOrReturn>().ProceedOrReturn();
         }
 
+        if(other.tag=="stick")
+        {
+            Vector3 diff = other.transform.position - transform.position;
+            diff.y = -1.2f;
+            GetComponent<CharaCon>().SetVel(diff*-1 * 10);
+        }
+
     }
 
     public void OnTriggerExit(Collider other)
