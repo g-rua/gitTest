@@ -45,6 +45,9 @@ public class SliderValueChangeName : MonoBehaviour
             case 6:
                 text.text = "RandomDoors";
                 break;
+            case 7:
+                text.text = "ぶっ飛ばし";
+                break;
             default:
                 text.text = "????????";
                 break;

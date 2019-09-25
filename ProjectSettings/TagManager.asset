@@ -12,6 +12,7 @@ TagManager:
   - Bom
   - InstantExplosionPanel
   - ShuffleDoors
+  - stick
   layers:
   - Default
   - TransparentFX
