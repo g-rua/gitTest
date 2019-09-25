@@ -7,6 +7,7 @@ public class FadeController : MonoBehaviour
 {
     [SerializeField] Image img;
     [SerializeField] Canvas canvas;
+    [SerializeField] Slider slider;
     private Color myColor;
     private string nextScene;
     public float alpha;
