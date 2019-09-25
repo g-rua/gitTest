@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class move1 : MonoBehaviour
 {
+    [SerializeField] Camera cam;
     [SerializeField] AnimationControll ac;
     [SerializeField] GameObject triggerCheckCollider;
     [SerializeField] CarryObject carryObj;
     [SerializeField] TriggerChecker tc;
     private CarryItemAction itemAction;
+    private Vector3 moveVel;
     public GameObject haveObj;
     public Vector3 vel;
     private float horizontal;
     private float vertical;
     private float speed = 5f;
     private float jumpPow = 10f;
+    private float rotY;
     public int jumpFlame = 0;
     public int maxJumpFlame = 10;
     public int harfJumpFlame = 5;
     public float velY = 0f;
     public float harfVelY = 0.95f;
-    public float maxVelY = 1.2f;
+    public float maxVelY = 1.1f;
     public bool g;
     public bool isCarry;
     public bool Ground { get; set; }
@@ -55,7 +58,6 @@ public class move1 : MonoBehaviour
         {
             itemAction.ItemAction(haveObj);
         }
-        transform.Rotate(Vector3.up, horizontal * 3f);
     }
 
     private void MoveMent()
@@ -70,7 +72,8 @@ public class move1 : MonoBehaviour
             velY += -0.15f;
             vel.y += velY;
         }
-
+        moveVel.x = horizontal;
+        moveVel.z = vertical;
         if (Input.GetKey(KeyCode.Space) && Ground)
         {
             jumpFlame++;
@@ -93,7 +96,15 @@ public class move1 : MonoBehaviour
         }
 
         vel.y += velY;
-        transform.position += ((transform.forward) * (speed * vertical) + vel) * Time.deltaTime;
+        Vector3 cameraForward = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 moveForward = (cameraForward * vertical + cam.transform.right * horizontal);
+        Vector3 velocity = transform.forward * speed * Time.deltaTime;
+        transform.position += (((moveForward * speed) + vel) * Time.deltaTime);
+
+        if (moveForward != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(moveForward);
+        }
     }
 
     private void DecideJumpPower(int flame)
