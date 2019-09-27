@@ -53,7 +53,14 @@ public class FadeController : MonoBehaviour
 
     void Update()
     {
-
+        if(isFadeIn)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
         alpha = Mathf.Clamp(alpha, 0f, maxAlpha);
         if (isFadeIn)
         {

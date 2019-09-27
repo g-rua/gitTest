@@ -5,6 +5,8 @@ using UnityEngine;
 public class BomControll : MonoBehaviour
 {
     [SerializeField] GameObject explosion;
+    private Vector3 vel;
+    public bool nage;
     public int explosionCount;
     private int explosionTimer=0;
     public bool isExplosion;
@@ -23,6 +25,7 @@ public class BomControll : MonoBehaviour
             GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
+        transform.position += vel*Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +35,26 @@ public class BomControll : MonoBehaviour
             GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
+        if(other.tag=="Player"&&nage)
+        {
+            GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
     }
+
+    public void BomThrow(Vector3 invel)
+    {
+        nage = true;
+        transform.parent = null;
+        vel = invel;
+    }
+
+    
+
+    public void SetVel(Vector3 invel)
+    {
+        vel = invel;
+    }
+
 
 }

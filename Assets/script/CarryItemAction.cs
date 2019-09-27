@@ -26,6 +26,12 @@ public class CarryItemAction : MonoBehaviour
                 break;
             case 9:
                 break;
+            case 10:
+                Vector3 vec = obj.transform.position - transform.position;
+                Vector3 throwVec = new Vector3(vec.x * 20f, 3f, vec.z * 20f);
+                obj.GetComponent<BomControll>().BomThrow(throwVec);
+                GetComponent<CharaCon>().Release();
+                break;
             default:
                 break;
 
