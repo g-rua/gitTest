@@ -5,9 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class FadeController : MonoBehaviour
 {
-    [SerializeField] Image img;
-    [SerializeField] Canvas canvas;
-    [SerializeField] Slider slider;
+    //[SerializeField] Image img;
+    //[SerializeField] Canvas canvas;
+    //[SerializeField] Slider slider;
+    [SerializeField] GameObject fadeCanvasprefab;
+    private GameObject fadeCanvas;
+    private Image fadeinImage;
     private Color myColor;
     private string nextScene;
     public float alpha;
@@ -19,7 +22,10 @@ public class FadeController : MonoBehaviour
 
     void Start()
     {
-        myColor = Color.black;
+        FadeIn();
+        myColor = Color.white;
+        myColor.a = 0;
+
     }
 
 
@@ -27,7 +33,10 @@ public class FadeController : MonoBehaviour
     public void FadeIn()
     {
         isFadeIn = true;
+        fadeCanvas = GameObject.Instantiate(fadeCanvasprefab) as GameObject;
+        fadeinImage = fadeCanvas.transform.GetChild(0).GetComponent<Image>();
         alpha = 1f;
+        fadeinImage.material.SetFloat("_Slider", alpha);
     }
 
     public void FadeOut(string name,Color fadeColor)
@@ -35,11 +44,16 @@ public class FadeController : MonoBehaviour
         myColor = fadeColor;
         isFadeOut = true;
         alpha = 0f;
+        fadeCanvas = GameObject.Instantiate(fadeCanvasprefab) as GameObject;
+        fadeinImage = fadeCanvas.transform.GetChild(0).GetComponent<Image>();
+        fadeinImage.material.SetFloat("_Slider", alpha);
         nextScene = name;
+
     }
 
     void Update()
     {
+
         alpha = Mathf.Clamp(alpha, 0f, maxAlpha);
         if (isFadeIn)
         {
@@ -49,10 +63,9 @@ public class FadeController : MonoBehaviour
             {
                 //キャンバスを破棄し、見えるようにする
                 isFadeIn = false;
-                canvas.enabled = false;
+                Destroy(fadeCanvas);
             }
-            myColor.a = alpha;
-            img.color = myColor;
+            fadeinImage.material.SetFloat("_Slider", alpha);
         }
         else if (isFadeOut)
         {
@@ -64,8 +77,7 @@ public class FadeController : MonoBehaviour
                 isFadeOut = false;
                 SceneManager.LoadScene(nextScene);
             }
-            myColor.a = alpha;
-            img.color = myColor;
+            fadeinImage.material.SetFloat("_Slider", alpha);
         }
     }
 

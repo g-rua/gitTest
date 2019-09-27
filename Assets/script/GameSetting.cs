@@ -63,8 +63,7 @@ public class GameSetting : MonoBehaviour
     private void ActiveFader(string name,Color color)
     {
         //フェードイン、アウトの実行
-        fader.SetActive(true);
-        fader.GetComponent<FadeController>().FadeOut(name,color);
+        GetComponent<FadeController>().FadeOut(name,color);
 
     }
 
