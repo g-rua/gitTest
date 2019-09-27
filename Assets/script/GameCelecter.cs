@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameCelecter : MonoBehaviour
 {
-    [SerializeField] GameObject fader;
+
     [SerializeField] Text gameNo;
     public int gameVal=0;
     public int lastVal = 0;
@@ -34,20 +34,16 @@ public class GameCelecter : MonoBehaviour
             switch (gameVal)
             {
                 case 0:
-                    fader.SetActive(true);
-                    fader.GetComponent<FadeController>().FadeOut("game1",Color.black);
+                    GetComponent<FadeController>().FadeOut("game1",Color.black);
                     break;
                 case 1:
-                    fader.SetActive(true);
-                    fader.GetComponent<FadeController>().FadeOut("game2", Color.black);
+                    GetComponent<FadeController>().FadeOut("game2", Color.black);
                     break;
                 case 2:
-                    fader.SetActive(true);
-                    fader.GetComponent<FadeController>().FadeOut("game3", Color.black);
+                    GetComponent<FadeController>().FadeOut("game3", Color.black);
                     break;
                 default:
-                    fader.SetActive(true);
-                    fader.GetComponent<FadeController>().FadeOut("title", Color.black);
+                    GetComponent<FadeController>().FadeOut("title", Color.black);
                     break;
             }
 

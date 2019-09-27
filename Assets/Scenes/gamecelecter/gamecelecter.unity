@@ -290,101 +290,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &337688385
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 337688386}
-  - component: {fileID: 337688389}
-  - component: {fileID: 337688388}
-  - component: {fileID: 337688387}
-  m_Layer: 5
-  m_Name: faderPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &337688386
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337688385}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_Children: []
-  m_Father: {fileID: 422139812}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &337688387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337688385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47f4f8e03f9ae3e46a111726056f6881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  img: {fileID: 337688388}
-  canvas: {fileID: 422139811}
-  alpha: 0
-  maxAlpha: 1
-  addAlpha: 0.04
-  isFade: 0
-  isFadeIn: 0
-  isFadeOut: 0
---- !u!114 &337688388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337688385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
---- !u!222 &337688389
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337688385}
-  m_CullTransparentMesh: 0
 --- !u!1 &422139808
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,7 +383,6 @@ RectTransform:
   - {fileID: 866236123}
   - {fileID: 2082116}
   - {fileID: 1785603690}
-  - {fileID: 337688386}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -578,6 +482,7 @@ GameObject:
   - component: {fileID: 1232795386}
   - component: {fileID: 1232795385}
   - component: {fileID: 1232795388}
+  - component: {fileID: 1232795389}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -662,10 +567,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10dbe43103159841bb23e06f32314cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fader: {fileID: 337688385}
   gameNo: {fileID: 866236124}
   gameVal: 0
   lastVal: 0
+--- !u!114 &1232795389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232795384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f4f8e03f9ae3e46a111726056f6881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCanvasprefab: {fileID: 6434339507710080945, guid: 32958ed4559bc594f98f6faba9ee7c2e,
+    type: 3}
+  alpha: 0
+  maxAlpha: 1
+  addAlpha: 0.01
+  isFade: 0
+  isFadeIn: 0
+  isFadeOut: 0
 --- !u!1 &1571485359
 GameObject:
   m_ObjectHideFlags: 0

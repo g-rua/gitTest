@@ -252,101 +252,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115599694}
   m_CullTransparentMesh: 0
---- !u!1 &203138458
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 203138459}
-  - component: {fileID: 203138462}
-  - component: {fileID: 203138461}
-  - component: {fileID: 203138460}
-  m_Layer: 5
-  m_Name: FaderPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &203138459
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203138458}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_Children: []
-  m_Father: {fileID: 550308002}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &203138460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203138458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47f4f8e03f9ae3e46a111726056f6881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  img: {fileID: 203138461}
-  canvas: {fileID: 550308001}
-  alpha: 0
-  maxAlpha: 1
-  addAlpha: 0.04
-  isFade: 0
-  isFadeIn: 0
-  isFadeOut: 0
---- !u!114 &203138461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203138458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
---- !u!222 &203138462
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203138458}
-  m_CullTransparentMesh: 0
 --- !u!1 &325171437
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +528,7 @@ GameObject:
   - component: {fileID: 495432249}
   - component: {fileID: 495432248}
   - component: {fileID: 495432251}
+  - component: {fileID: 495432252}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -714,7 +620,27 @@ MonoBehaviour:
   - {fileID: 325171437}
   - {fileID: 382704791}
   playCountSetting: {fileID: 975375436}
-  fader: {fileID: 203138458}
+  fader: {fileID: 0}
+--- !u!114 &495432252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495432247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f4f8e03f9ae3e46a111726056f6881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCanvasprefab: {fileID: 6434339507710080945, guid: 32958ed4559bc594f98f6faba9ee7c2e,
+    type: 3}
+  alpha: 0
+  maxAlpha: 1
+  addAlpha: 0.01
+  isFade: 0
+  isFadeIn: 0
+  isFadeOut: 0
 --- !u!1 &550307998
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +735,6 @@ RectTransform:
   - {fileID: 2138439411}
   - {fileID: 975375437}
   - {fileID: 572806474}
-  - {fileID: 203138459}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
