@@ -197,6 +197,15 @@ public class CharaCon : MonoBehaviour
 
     }
 
+    public void Release()
+    {
+        isCarry = false;
+        haveObj.transform.parent = null;
+        haveObj = null;
+        carryObj.ObjRelease();
+
+    }
+
     public void SetVel(Vector3 invel)
     {
         vel = invel;
