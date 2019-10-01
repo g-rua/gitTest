@@ -16,12 +16,14 @@ public class SliderValueChangeName : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ボタン内のテキストを変えるためにスライダーの数値を取得
         val = (int)slider.value;
         ChangeText(val);
     }
 
     public void ChangeText(int value)
     {
+        //スライダーの数値に応じてテキストを変える
         switch (value)
         {
             case 0:

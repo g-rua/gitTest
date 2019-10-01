@@ -5,12 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class FadeController : MonoBehaviour
 {
-    //[SerializeField] Image img;
-    //[SerializeField] Canvas canvas;
-    //[SerializeField] Slider slider;
+    //フェードに使うテクスチャの配列
     [SerializeField] Texture[] mainTextures;
+    //フェードの仕方を変えるルール画像の配列
     [SerializeField] Texture[] ruleTextures;
+    //キャンバスのprefab
     [SerializeField] GameObject fadeCanvasprefab;
+    //prefabからインスタンスしたものの入れ物
     private GameObject fadeCanvas;
     private Image fadeinImage;
     private Color myColor;
@@ -35,11 +36,17 @@ public class FadeController : MonoBehaviour
     public void FadeIn()
     {
         isFadeIn = true;
+        //フェード用のキャンバスをインスタンスする
         fadeCanvas = GameObject.Instantiate(fadeCanvasprefab) as GameObject;
+        //フェード用のテクスチャをランダムにするために取得
         fadeinImage = fadeCanvas.transform.GetChild(0).GetComponent<Image>();
+        //メインのテクスチャを配列から選ぶ
         fadeinImage.material.mainTexture = mainTextures[SetTextureIndex(mainTextures.Length)];
+        //消え方のルール画像を配列から選ぶ
         fadeinImage.material.SetTexture("_RuleTex", ruleTextures[SetTextureIndex(ruleTextures.Length)]);
+        //スタート時点の透明度を設定
         alpha = 1f;
+        //透明度を設定
         fadeinImage.material.SetFloat("_Slider", alpha);
     }
 
@@ -48,11 +55,17 @@ public class FadeController : MonoBehaviour
         myColor = fadeColor;
         isFadeOut = true;
         alpha = 0f;
+        //フェード用のキャンバスをインスタンス
         fadeCanvas = GameObject.Instantiate(fadeCanvasprefab) as GameObject;
+        //フェード用のテクスチャをランダムにするために取得
         fadeinImage = fadeCanvas.transform.GetChild(0).GetComponent<Image>();
+        //メインのテクスチャを配列から選ぶ
         fadeinImage.material.mainTexture = mainTextures[SetTextureIndex(mainTextures.Length)];
+        //ルール画像を配列から選ぶ
         fadeinImage.material.SetTexture("_RuleTex", ruleTextures[SetTextureIndex(ruleTextures.Length)]);
+        //初期透明度を設定
         fadeinImage.material.SetFloat("_Slider", alpha);
+        //次のシーンの名前を入れる
         nextScene = name;
 
     }
@@ -61,6 +74,7 @@ public class FadeController : MonoBehaviour
     {
         if(isFadeIn)
         {
+            //フェードイン中はゲーム時間を止める
             Time.timeScale = 0f;
         }
         alpha = Mathf.Clamp(alpha, 0f, maxAlpha);
@@ -72,9 +86,11 @@ public class FadeController : MonoBehaviour
             {
                 //キャンバスを破棄し、見えるようにする
                 isFadeIn = false;
+                //終わったらゲーム時間をもとに戻す
                 Time.timeScale = 1f;
                 Destroy(fadeCanvas);
             }
+            //透明度を変えていく
             fadeinImage.material.SetFloat("_Slider", alpha);
         }
         else if (isFadeOut)
@@ -103,12 +119,11 @@ public class FadeController : MonoBehaviour
 
     private int SetTextureIndex(int length)
     {
+        //ランダムに数値を返す
         int texIndex;
         texIndex = Random.Range(0, length);
 
         return texIndex;
-
-
     }
 }
 

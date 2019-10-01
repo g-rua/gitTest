@@ -65,6 +65,7 @@ public class AnimationControll : MonoBehaviour
 
     public void SetMovement(float vert,float hori)
     {
+        //移動方向全てをプラスに変える
         vert = Mathf.Clamp(vert, -1, 1);
         hori = Mathf.Clamp(hori, -1, 1);
         if (vert<0f)

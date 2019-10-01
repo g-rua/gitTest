@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class CharaCon : MonoBehaviour
 {
+    //カメラ　移動方向を決めるために設定
     [SerializeField] Camera cam;
+    //アニメーション用
     [SerializeField] AnimationControll ac;
+    //トリガー処理をするためのコライダー
     [SerializeField] GameObject triggerCheckCollider;
+    //アイテムを運搬するための処理をするスクリプト
     [SerializeField] CarryObject carryObj;
+    //トリガー処理するためのチェックをするスクリプト
     [SerializeField] TriggerChecker tc;
+    //持っているアイテムによってアクションを変えるスクリプト
     private CarryItemAction itemAction;
     private Vector3 moveVel;
     public GameObject haveObj;
+    //外部から影響を受けるためのベロシティ
     public Vector3 vel;
     private float horizontal;
     private float vertical;
@@ -40,8 +47,6 @@ public class CharaCon : MonoBehaviour
     {
         //プレイヤー２操作用
         velY = Mathf.Clamp(velY, 0f, maxVelY);
-        //horizontal = Input.GetAxis("Horizontal2");
-        //vertical = Input.GetAxis("Vertical2");
         Animations();
         g = Ground;
         //移動
@@ -111,13 +116,16 @@ public class CharaCon : MonoBehaviour
         vel.y += velY;
         //transform.position += ((transform.forward) * (speed*vertical) + vel) * Time.deltaTime;
 
+        //カメラの向きによって移動方向を決めるためカメラの正面のベクトルを取得
         Vector3 cameraForward = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1)).normalized;
+        //キャラクターの移動方向をカメラの向きに従って変える
         Vector3 moveForward = (cameraForward * vertical + cam.transform.right * horizontal);
         Vector3 velocity = transform.forward * speed * Time.deltaTime;
         transform.position += (((moveForward * speed)+ vel) * Time.deltaTime) ;
 
         if (moveForward != Vector3.zero)
         {
+            //移動する方向に回転させる
             transform.rotation = Quaternion.LookRotation(moveForward);
         }
 
@@ -164,7 +172,6 @@ public class CharaCon : MonoBehaviour
         ac.SetOnGround(Ground);
         //移動アニメーションの設定
         ac.SetMovement(vertical,horizontal);
-        //ac.SetMovement(horizontal);
 
         ac.ExcuteMotion(AnimationControll.MotionType.mt_walk);
         if (Input.GetKeyDown(KeyCode.Q))

@@ -22,6 +22,7 @@ public class BomControll : MonoBehaviour
     {
         if(explosionTimer++>explosionCount*oneSecond)
         {
+            //一定時間経過後爆発
             GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
@@ -32,11 +33,13 @@ public class BomControll : MonoBehaviour
     {
         if(other.tag=="InstantExplosionPanel")
         {
+            //特殊な床にあたったら即爆発
             GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
         if(other.tag=="Player"&&nage)
         {
+            //投げた状態でプレイヤーに当たったら即爆発
             GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
