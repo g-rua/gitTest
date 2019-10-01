@@ -22,8 +22,11 @@ public class BomBlowAway : MonoBehaviour
     {
         if(other.tag=="Player")
         {
+            //爆風に当たった時にプレイヤーを吹っ飛ばす
             transform.parent = null;
+            //吹っ飛ばす方向を決めるため、プレイヤーと爆風のベクトルを取得
             targetVec = other.transform.position - transform.position;
+            //ベクトルに倍率をかけて吹っ飛ばす
             other.gameObject.GetComponent<CharaCon>().SetVel(targetVec * scale);
         }
     }
