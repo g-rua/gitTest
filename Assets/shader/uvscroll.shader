@@ -3,12 +3,19 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+		//X方向に関するパラメータ
+		_XShift("Xuv Shift",Range(-1.0,1.0))=0.1
+		_XSpeed("XScroll Speed",Range(-1.0,1.0))=0.1
+
+		_YShift("Yuv Shift",Range(-1.0,1.0)) = 0.1
+		_YSpeed("YScroll Speed",Range(-1.0,1.0)) = 0.1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
         LOD 100
-
+		//透明テクスチャを使用できるようにする
+		Blend SrcAlpha OneMinusSrcAlpha
         Pass
         {
             CGPROGRAM
@@ -34,18 +41,24 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-			float _time;
+			float _Xshift;
+			float _Yshift;
+			float _XSpeed;
+			float _YSpeed;
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv+_Time, _MainTex);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
+
+				i.uv.x += 3 * _Time;
+			i.uv.y += 5*_Time;
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
