@@ -8,6 +8,8 @@ public class FadeController : MonoBehaviour
     //[SerializeField] Image img;
     //[SerializeField] Canvas canvas;
     //[SerializeField] Slider slider;
+    [SerializeField] Texture[] mainTextures;
+    [SerializeField] Texture[] ruleTextures;
     [SerializeField] GameObject fadeCanvasprefab;
     private GameObject fadeCanvas;
     private Image fadeinImage;
@@ -35,6 +37,8 @@ public class FadeController : MonoBehaviour
         isFadeIn = true;
         fadeCanvas = GameObject.Instantiate(fadeCanvasprefab) as GameObject;
         fadeinImage = fadeCanvas.transform.GetChild(0).GetComponent<Image>();
+        fadeinImage.material.mainTexture = mainTextures[SetTextureIndex(mainTextures.Length)];
+        fadeinImage.material.SetTexture("_RuleTex", ruleTextures[SetTextureIndex(ruleTextures.Length)]);
         alpha = 1f;
         fadeinImage.material.SetFloat("_Slider", alpha);
     }
@@ -46,6 +50,8 @@ public class FadeController : MonoBehaviour
         alpha = 0f;
         fadeCanvas = GameObject.Instantiate(fadeCanvasprefab) as GameObject;
         fadeinImage = fadeCanvas.transform.GetChild(0).GetComponent<Image>();
+        fadeinImage.material.mainTexture = mainTextures[SetTextureIndex(mainTextures.Length)];
+        fadeinImage.material.SetTexture("_RuleTex", ruleTextures[SetTextureIndex(ruleTextures.Length)]);
         fadeinImage.material.SetFloat("_Slider", alpha);
         nextScene = name;
 
@@ -57,10 +63,6 @@ public class FadeController : MonoBehaviour
         {
             Time.timeScale = 0f;
         }
-        else
-        {
-            Time.timeScale = 1f;
-        }
         alpha = Mathf.Clamp(alpha, 0f, maxAlpha);
         if (isFadeIn)
         {
@@ -70,6 +72,7 @@ public class FadeController : MonoBehaviour
             {
                 //キャンバスを破棄し、見えるようにする
                 isFadeIn = false;
+                Time.timeScale = 1f;
                 Destroy(fadeCanvas);
             }
             fadeinImage.material.SetFloat("_Slider", alpha);
@@ -96,6 +99,16 @@ public class FadeController : MonoBehaviour
     public bool IsFadein()
     {
         return isFadeIn;
+    }
+
+    private int SetTextureIndex(int length)
+    {
+        int texIndex;
+        texIndex = Random.Range(0, length);
+
+        return texIndex;
+
+
     }
 }
 

@@ -31,6 +31,6 @@ public class BlockCounter : MonoBehaviour
                 redColorBlock++;
             }
         }
-        Debug.Log(redColorBlock);
+
     }
 }

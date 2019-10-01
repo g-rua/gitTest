@@ -36,6 +36,7 @@ public class CelectDebugMode : MonoBehaviour
                 characters[i].transform.position = debugField[debugGameIndex].transform.GetChild(i).position;
             }
             cam.transform.position = debugField[debugGameIndex].transform.GetChild(2).position;
+            cam.transform.rotation = debugField[debugGameIndex].transform.GetChild(2).rotation;
             Time.timeScale = 1;
             pouse = false;
             Destroy(pausePanel);

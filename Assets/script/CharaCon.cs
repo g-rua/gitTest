@@ -184,7 +184,9 @@ public class CharaCon : MonoBehaviour
             carryObj.ObjRelease();
         }
         //アイテムを持ち上げる
-        if (!isCarry&&tc.GetObject().transform.parent==null)
+        if (!isCarry&&
+            (tc.GetObject().transform.parent == null||
+            tc.GetObject().transform.parent.tag != "Player"))
         {
             isCarry = true;
             carryObj.SetCarryObject(tc.GetObject());
