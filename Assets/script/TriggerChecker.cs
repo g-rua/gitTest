@@ -65,6 +65,11 @@ public class TriggerChecker : MonoBehaviour
             GetComponent<CharaCon>().SetVel(diff*-1 * 10);
         }
 
+        if(other.tag=="Rope")
+        {
+            transform.root.parent = other.transform;
+        }
+
     }
 
     public void OnTriggerExit(Collider other)
