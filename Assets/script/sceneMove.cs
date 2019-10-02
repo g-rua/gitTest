@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class sceneMove : MonoBehaviour
 {
-    [SerializeField] GameObject fader;
     public string sceneName;
     // Start is called before the first frame update
     void Start()
@@ -15,22 +14,16 @@ public class sceneMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ////シーン遷移の実行
-        //if(Input.GetKeyDown(KeyCode.Return))
-        //{
-        //    SceneChange();
-        //}
+
     }
 
     public void SceneChange()
     {
-        Debug.Log("p");
-        GetComponent<FadeController>().FadeOut(sceneName, Color.white);
+        GetComponent<FadeController>().FadeOut(sceneName);
     }
 
     public void OnClick()
     {
-        Debug.Log("p");
-        GetComponent<FadeController>().FadeOut(sceneName,Color.white);
+        GetComponent<FadeController>().FadeOut(sceneName);
     }
 }
