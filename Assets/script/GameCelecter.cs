@@ -34,16 +34,16 @@ public class GameCelecter : MonoBehaviour
             switch (gameVal)
             {
                 case 0:
-                    GetComponent<FadeController>().FadeOut("game1",Color.black);
+                    GetComponent<FadeController>().FadeOut("game1");
                     break;
                 case 1:
-                    GetComponent<FadeController>().FadeOut("game2", Color.black);
+                    GetComponent<FadeController>().FadeOut("game2");
                     break;
                 case 2:
-                    GetComponent<FadeController>().FadeOut("game3", Color.black);
+                    GetComponent<FadeController>().FadeOut("game3");
                     break;
                 default:
-                    GetComponent<FadeController>().FadeOut("title", Color.black);
+                    GetComponent<FadeController>().FadeOut("title");
                     break;
             }
 

@@ -16,8 +16,8 @@ public class FadeController : MonoBehaviour
     private Image fadeinImage;
     private Color myColor;
     private string nextScene;
-    public float alpha;
-    public float maxAlpha;
+    private float alpha;
+    private float maxAlpha;
     public float addAlpha;
     public bool isFade;
     public bool isFadeIn;
@@ -25,6 +25,7 @@ public class FadeController : MonoBehaviour
 
     void Start()
     {
+        maxAlpha = 1f;
         FadeIn();
         myColor = Color.white;
         myColor.a = 0;
@@ -50,9 +51,8 @@ public class FadeController : MonoBehaviour
         fadeinImage.material.SetFloat("_Slider", alpha);
     }
 
-    public void FadeOut(string name,Color fadeColor)
+    public void FadeOut(string name)
     {
-        myColor = fadeColor;
         isFadeOut = true;
         alpha = 0f;
         //フェード用のキャンバスをインスタンス

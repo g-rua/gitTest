@@ -36,7 +36,7 @@ public class GameJudge : MonoBehaviour
                 RaceJudge();
                 break;
             default:
-                fader.GetComponent<FadeController>().FadeOut("title",Color.black);
+                fader.GetComponent<FadeController>().FadeOut("title");
                 break;
 
         }
