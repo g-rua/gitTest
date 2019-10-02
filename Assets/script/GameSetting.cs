@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GameSetting : MonoBehaviour
 {
     static int playerCount=0;
     [SerializeField] GameObject[] playerCountButton;
+    [SerializeField] Image buttonImage;
+    [SerializeField] Image[] setImage;
     [SerializeField] GameObject playCountSetting;
     [SerializeField] GameObject fader;
     // Start is called before the first frame update
@@ -17,7 +19,7 @@ public class GameSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerCount);
+
     }
 
     public void SoloPlay()
@@ -25,6 +27,8 @@ public class GameSetting : MonoBehaviour
         //操作人数を1人にして遊ぶ回数の設定へ
         playerCount = 1;
         PlayCountSetting(0,2);
+        setImage[0].sprite = buttonImage.sprite;
+        setImage[0].color = Color.white;
     }
 
     public void DuoPlay()
@@ -32,6 +36,8 @@ public class GameSetting : MonoBehaviour
         //操作人数を2人にして遊ぶ回数の設定へ
         playerCount = 2;
         PlayCountSetting(0,2);
+        setImage[0].sprite = buttonImage.sprite;
+        setImage[0].color = Color.white;
     }
 
     public void ThreePlay()

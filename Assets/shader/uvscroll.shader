@@ -4,11 +4,8 @@
     {
         _MainTex ("Texture", 2D) = "white" {}
 		//X方向に関するパラメータ
-		_XShift("Xuv Shift",Range(-1.0,1.0))=0.1
-		_XSpeed("XScroll Speed",Range(-1.0,1.0))=0.1
-
-		_YShift("Yuv Shift",Range(-1.0,1.0)) = 0.1
-		_YSpeed("YScroll Speed",Range(-1.0,1.0)) = 0.1
+		_XSpeed("XScrollSpeed",Range(0,5)) = 0
+		_YSpeed("YScrollSpeed",Range(0,5))=0
     }
     SubShader
     {
@@ -41,8 +38,6 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-			float _Xshift;
-			float _Yshift;
 			float _XSpeed;
 			float _YSpeed;
             v2f vert (appdata v)
@@ -57,8 +52,8 @@
             fixed4 frag (v2f i) : SV_Target
             {
 
-				i.uv.x += 3 * _Time;
-			i.uv.y += 5*_Time;
+				i.uv.x += _XSpeed * _Time;
+				i.uv.y += _YSpeed * _Time;
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog

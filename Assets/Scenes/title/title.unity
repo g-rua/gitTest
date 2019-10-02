@@ -953,8 +953,16 @@ MonoBehaviour:
   - {fileID: 2800000, guid: cd7bf1b1ff8a29f408c88ca5c568df0e, type: 3}
   ruleTextures:
   - {fileID: 2800000, guid: d0cd89c42dd29994e8bf8395da2b6ec5, type: 3}
+  - {fileID: 2800000, guid: e1ce23c1e6a6fd24f8cda9233f8f908a, type: 3}
+  - {fileID: 2800000, guid: 6a8aef7208015fd4a915cd334962bda7, type: 3}
   - {fileID: 2800000, guid: c12407810b4ce0f4494ae8a8918dee2e, type: 3}
+  - {fileID: 2800000, guid: 38afa35a3565be443a9fc54873182032, type: 3}
+  - {fileID: 2800000, guid: 79036981a9185434f81201014127fd11, type: 3}
   - {fileID: 2800000, guid: 7d81a6ef50cf8f343b5c727f7bca0b00, type: 3}
+  - {fileID: 2800000, guid: 8956298691aa29e409687c0ce32e6dd3, type: 3}
+  - {fileID: 2800000, guid: 26d68ee484ab66b49942ecf9c58a4605, type: 3}
+  - {fileID: 2800000, guid: 253c54aace6c9ee43b13bfeff322f5d7, type: 3}
+  - {fileID: 2800000, guid: a55c3fb29735c834c86800c01a42d756, type: 3}
   fadeCanvasprefab: {fileID: 6434339507710080945, guid: 32958ed4559bc594f98f6faba9ee7c2e,
     type: 3}
   alpha: 0
