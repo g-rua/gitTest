@@ -15,6 +15,7 @@ TagManager:
   - stick
   - Rope
   - Ground
+  - dashground
   layers:
   - Default
   - TransparentFX
