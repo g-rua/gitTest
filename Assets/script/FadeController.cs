@@ -26,7 +26,7 @@ public class FadeController : MonoBehaviour
     void Start()
     {
         maxAlpha = 1f;
-        FadeIn();
+        FadeIn(0);
         myColor = Color.white;
         myColor.a = 0;
 
@@ -51,6 +51,23 @@ public class FadeController : MonoBehaviour
         fadeinImage.material.SetFloat("_Slider", alpha);
     }
 
+    public void FadeIn(int texIndex)
+    {
+        isFadeIn = true;
+        //フェード用のキャンバスをインスタンスする
+        fadeCanvas = GameObject.Instantiate(fadeCanvasprefab) as GameObject;
+        //フェード用のテクスチャをランダムにするために取得
+        fadeinImage = fadeCanvas.transform.GetChild(0).GetComponent<Image>();
+        //メインのテクスチャを配列から選ぶ
+        fadeinImage.material.mainTexture = mainTextures[texIndex];
+        //消え方のルール画像を配列から選ぶ
+        fadeinImage.material.SetTexture("_RuleTex", ruleTextures[texIndex]);
+        //スタート時点の透明度を設定
+        alpha = 1f;
+        //透明度を設定
+        fadeinImage.material.SetFloat("_Slider", alpha);
+    }
+
     public void FadeOut(string name)
     {
         isFadeOut = true;
@@ -63,6 +80,25 @@ public class FadeController : MonoBehaviour
         fadeinImage.material.mainTexture = mainTextures[SetTextureIndex(mainTextures.Length)];
         //ルール画像を配列から選ぶ
         fadeinImage.material.SetTexture("_RuleTex", ruleTextures[SetTextureIndex(ruleTextures.Length)]);
+        //初期透明度を設定
+        fadeinImage.material.SetFloat("_Slider", alpha);
+        //次のシーンの名前を入れる
+        nextScene = name;
+
+    }
+
+    public void FadeOut(string name,int texIndex)
+    {
+        isFadeOut = true;
+        alpha = 0f;
+        //フェード用のキャンバスをインスタンス
+        fadeCanvas = GameObject.Instantiate(fadeCanvasprefab) as GameObject;
+        //フェード用のテクスチャをランダムにするために取得
+        fadeinImage = fadeCanvas.transform.GetChild(0).GetComponent<Image>();
+        //メインのテクスチャを配列から選ぶ
+        fadeinImage.material.mainTexture = mainTextures[texIndex];
+        //ルール画像を配列から選ぶ
+        fadeinImage.material.SetTexture("_RuleTex", ruleTextures[texIndex]);
         //初期透明度を設定
         fadeinImage.material.SetFloat("_Slider", alpha);
         //次のシーンの名前を入れる
