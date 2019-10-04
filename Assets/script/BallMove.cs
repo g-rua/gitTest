@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallMove : MonoBehaviour
 {
+    public Vector3 dashVel;
     private Vector3 vel;
     private int dashCount=0;
     private bool dashFlag;
@@ -17,27 +18,17 @@ public class BallMove : MonoBehaviour
     void Update()
     {
 
-        if(dashFlag)
-        {
-        transform.position += vel*Time.deltaTime;
-            if(dashCount--<0)
-            {
-                dashFlag = false;
-            }
-        }
-        else
-        {
-            vel = Vector3.zero;
-        }
+        vel *=0.9f;
+        
+        transform.position += vel * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag=="dashground")
         {
-            dashFlag = true;
-            dashCount = 10;
-           vel =new Vector3(0,8f,-10f);
+
+           vel =dashVel;
             
         }
     }
