@@ -16,6 +16,9 @@ TagManager:
   - Rope
   - Ground
   - dashground
+  - BoalGoal
+  - BrushedDown
+  - tumblingDoll
   layers:
   - Default
   - TransparentFX
