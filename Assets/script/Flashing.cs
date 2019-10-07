@@ -25,10 +25,7 @@ public class Flashing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //flashingCount++;
-        //changeColor.a = ((float)(flashingCount) / (float)(maxFlashingCount))+0.2f;
-        //if (flashingCount / 60 < 5)
-        //{
+        //そのうちリファクタリングします
         flashingCount--;
         if(flashingCount==360)
         {

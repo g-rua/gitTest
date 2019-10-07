@@ -28,6 +28,6 @@ public class CanonFire : MonoBehaviour
         }
 
         transform.Rotate(Vector3.up, rotSpeed * Input.GetAxis("Horizontal"));
-        body.transform.Rotate(Vector3.right, rotSpeed * Input.GetAxis("Vertical"));
+        body.transform.Rotate(Vector3.forward, rotSpeed * Input.GetAxis("Vertical"));
     }
 }
