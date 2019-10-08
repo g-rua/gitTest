@@ -19,6 +19,7 @@ TagManager:
   - BoalGoal
   - BrushedDown
   - tumblingDoll
+  - MoveFloor
   layers:
   - Default
   - TransparentFX

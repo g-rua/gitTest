@@ -14,7 +14,7 @@ public class LuckCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void SetLuckIndex(int index)
@@ -25,6 +25,11 @@ public class LuckCube : MonoBehaviour
     public int GetLuckIndex()
     {
         return luckIndex;
+    }
+
+    public void SetPosition()
+    {
+        transform.position += new Vector3(0, luckIndex * 1.5f, 0);
     }
 
 }

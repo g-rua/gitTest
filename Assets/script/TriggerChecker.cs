@@ -55,6 +55,7 @@ public class TriggerChecker : MonoBehaviour
         }
         if(other.tag=="ShuffleDoors")
         {
+            GetComponent<CharaCon>().SetVel(Vector3.zero);
             transform.position = other.gameObject.GetComponent<StageProceedOrReturn>().ProceedOrReturn();
         }
 
