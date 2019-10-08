@@ -20,7 +20,7 @@ public class ReturnRandomDoors : MonoBehaviour
 
     public Vector3 GetPosition()
     {
-        return target.transform.position;
+        return target.transform.position+new Vector3(0,0.5f,0);
     }
 
 }

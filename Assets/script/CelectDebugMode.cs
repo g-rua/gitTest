@@ -29,6 +29,7 @@ public class CelectDebugMode : MonoBehaviour
     void Update()
     {
         ExcutePause();
+        CelectDebugGame();
     }
 
     public void CelectDebugGame()
@@ -45,11 +46,11 @@ public class CelectDebugMode : MonoBehaviour
         //カメラも同様
         cam.transform.position = debugField[debugGameIndex].transform.GetChild(2).position;
         cam.transform.rotation = debugField[debugGameIndex].transform.GetChild(2).rotation;
-        //ゲーム時間をもとに戻す
-        Time.timeScale = 1;
-        pouse = false;
-        //キャンバスの破棄
-        Destroy(pausePanel);
+        ////ゲーム時間をもとに戻す
+        //Time.timeScale = 1;
+        //pouse = false;
+        ////キャンバスの破棄
+        //Destroy(pausePanel);
 
 
 
@@ -77,10 +78,10 @@ public class CelectDebugMode : MonoBehaviour
                     //ボタンを押したときの処理を追加するために取得
                     button = pausePanel.transform.Find("startButton").GetComponent<Button>();
                     //ボタンを押したときの処理を入れる
-                    button.onClick.AddListener(()=>
-                    {
-                        CelectDebugGame();
-                    });
+                    //button.onClick.AddListener(()=>
+                    //{
+                    //    CelectDebugGame();
+                    //});
                 }
             }
             else

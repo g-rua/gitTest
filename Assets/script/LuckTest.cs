@@ -16,7 +16,13 @@ public class LuckTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            for (int i = 0; i < luckCube.transform.childCount; i++)
+            {
+                luckCube.transform.GetChild(i).GetComponent<LuckCube>().SetPosition();
+            }
+        }
     }
 
     private void SetLuckCubeIndex()
