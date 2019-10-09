@@ -13,31 +13,26 @@ public class LotteryRotation : MonoBehaviour
     public bool right;
     public bool forward;
     private float rot;          //回転速度
-    private bool rotFlg;
 
     // Start is called before the first frame update
     void Start()
     {
-        rotFlg = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            rotFlg = true;
-        }
-
         LotteryRot();
     }
 
     public void LotteryRot()
     {
-        if (rotFlg)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            rotFlg = false;
-            rot = firstRot; 
+            if (rot < firstRot)
+            {
+                rot += firstRot;    //上のif文で速度制限してます
+            }
         }
 
         rot = rot - decaySpeed; //摩擦でゆっくり
