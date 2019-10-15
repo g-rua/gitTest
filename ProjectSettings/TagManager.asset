@@ -20,6 +20,7 @@ TagManager:
   - BrushedDown
   - tumblingDoll
   - MoveFloor
+  - FallItem
   layers:
   - Default
   - TransparentFX
