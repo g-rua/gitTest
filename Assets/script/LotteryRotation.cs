@@ -6,17 +6,19 @@ public class LotteryRotation : MonoBehaviour
 {
     [SerializeField] GameObject obj;
     [SerializeField] Vector3 axis;
+    private Quaternion InitQuat;
     public float firstRot;
     public float rotSpeed;  //変更可能な回転初速値
     public float decaySpeed;   //減衰速度 要は摩擦
     public bool up;
     public bool right;
     public bool forward;
-    private float rot;          //回転速度
+    public float rot;          //回転速度
 
     // Start is called before the first frame update
     void Start()
     {
+        InitQuat = transform.rotation;
     }
 
     // Update is called once per frame
@@ -27,17 +29,22 @@ public class LotteryRotation : MonoBehaviour
 
     public void LotteryRot()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+
+
+
+
+        if (rot < 1f)
         {
-            if (rot < firstRot)
+            if (transform.rotation.z- InitQuat.z<0.1f)
             {
-                rot += firstRot;    //上のif文で速度制限してます
+                rot = 0f;
             }
         }
-
+        else
+        {
         rot = rot - decaySpeed; //摩擦でゆっくり
-
-        if(rot > 0)
+        }
+        if (rot > 0)
         {
             if (up)
             {
@@ -54,4 +61,18 @@ public class LotteryRotation : MonoBehaviour
         }
 
     }
+
+    public void SetFirstRot(float frot)
+    {
+        firstRot = frot;
+        if (rot < firstRot)
+        {
+            rot += firstRot;    //上のif文で速度制限してます
+        }
+    }
+    public float GetRot()
+    {
+        return rot;
+    }
+
 }
