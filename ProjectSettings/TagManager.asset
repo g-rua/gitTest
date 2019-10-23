@@ -21,6 +21,7 @@ TagManager:
   - tumblingDoll
   - MoveFloor
   - FallItem
+  - HaveAddPoint
   layers:
   - Default
   - TransparentFX
