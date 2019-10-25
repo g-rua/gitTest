@@ -23,19 +23,27 @@ public class TimingGame : MonoBehaviour
     // Update is called once 
     void Update()
     {
+        //それぞれのタイミングで止める
         if(Input.GetKeyDown(KeyCode.Keypad4))
         {
+            //押したら落とすのをやめる
             fall1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            //止まったものと対象との距離を取る
             diff1 = fall1.transform.position - t1.transform.position;
+            //ベクトルの大きさを取る
             mag1 = diff1.magnitude;
         }
         if (Input.GetKeyDown(KeyCode.Keypad6))
         {
+            //押したら止める
             fall2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            //止まったものと対象との距離を取る
             diff2 = fall2.transform.position - t2.transform.position;
+            //ベクトルの大きさを取る
             mag2 = diff2.magnitude;
         }
 
+        //それぞれの大きさを比較して小さいほうの勝利
         if(mag1<mag2)
         {
             win = t1;

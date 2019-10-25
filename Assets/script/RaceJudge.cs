@@ -17,6 +17,7 @@ public class RaceJudge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //全員ゴールで終わり
         if((rankIndex==players)&&!gameEnd)
         {
             gameEnd = true;
@@ -32,7 +33,7 @@ public class RaceJudge : MonoBehaviour
     {
         if(other.tag=="Player")
         {
-
+            //ゴールしたら配列にいれて判定を消す
             rank[rankIndex] = other.gameObject;
             rankIndex++;
             Destroy(other);

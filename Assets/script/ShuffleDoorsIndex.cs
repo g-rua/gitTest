@@ -9,7 +9,9 @@ public class ShuffleDoorsIndex : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //正解のドアの数値を決める
         childIndex = Random.Range(0, transform.childCount);
+        //それぞれのドアに役割を与える
         SetNextStageIndex(childIndex);
     }
 
@@ -24,6 +26,7 @@ public class ShuffleDoorsIndex : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             bool flag = false;
+            //与えられた数値によって起動させるスクリプトを変える
             if(i==chIdx)
             {
                 flag = true;

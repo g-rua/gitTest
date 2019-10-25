@@ -19,6 +19,7 @@ public class RepeatHitBomColor : MonoBehaviour
 
     public void TapCountChangeAlpha(int tap,int maxtap)
     {
+        //連打数を限界数との割合にして透過率を上げていく
         bomColor.a = (float)tap / (float)maxtap;
         GetComponent<MeshRenderer>().materials[1].color = bomColor;
     }
