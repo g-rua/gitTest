@@ -21,6 +21,7 @@ public class MoveFloor : MonoBehaviour
     {
         if(other.tag=="MoveFloor")
         {
+            //動く床の場合その床のUVスクロール速度に基づいて移動
             xSpeed = other.transform.GetComponent<MeshRenderer>().materials[0].GetFloat("_XSpeed")*-1f;
             transform.position -= new Vector3(xSpeed, 0, 0)*Time.deltaTime;
         }

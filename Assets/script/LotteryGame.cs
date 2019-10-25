@@ -21,6 +21,7 @@ public class LotteryGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //まだ回していないなら回す
         if(Input.GetKeyDown(KeyCode.R)&&!rotationEnd)
         {
             lr.SetFirstRot(enterRot);
@@ -28,6 +29,7 @@ public class LotteryGame : MonoBehaviour
         }
         if(rotationStart&&lr.GetRot()==0f)
         {
+            //回転が終わったら玉を排出させ、回転できなくする
             lotterySphere = GameObject.Instantiate(sphere, sphereExit.position, sphereExit.rotation);
             rotationEnd = true;
             rotationStart = false;

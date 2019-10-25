@@ -14,11 +14,13 @@ public class tumblingDollBlow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ハンマーから伝わった速度を加える
         transform.position += vel*Time.deltaTime;
     }
 
     public void SetVel(Vector3 invel)
     {
+        //ハンマーから伝わる速度を入れる
         vel = invel;
     }
 }

@@ -19,6 +19,7 @@ public class LotterySphere : MonoBehaviour
 
     public void LotteryRandomIndex()
     {
+        //福引ででる玉の色を変える
         lotteryIndex = Random.Range(0, 4);
         LotteryIndexChangeColor(lotteryIndex);
     }

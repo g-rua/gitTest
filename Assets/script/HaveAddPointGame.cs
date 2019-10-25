@@ -17,6 +17,7 @@ public class HaveAddPointGame : MonoBehaviour
     {
         for(int i=0;i<points.Length;i++)
         {
+            //追加されてくる仮ポイントを1秒ごとに本ポイントにする
             points[i] = hap[i].point/60;
         }
     }
