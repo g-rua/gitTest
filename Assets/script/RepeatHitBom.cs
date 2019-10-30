@@ -29,7 +29,7 @@ public class RepeatHitBom : MonoBehaviour
         {
             exp = GameObject.Instantiate(expInstance, transform.position, Quaternion.identity);
             exp.transform.localScale = transform.localScale;
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
         //連打数で色を変えさせる
         GetComponent<RepeatHitBomColor>().TapCountChangeAlpha(tapCount, maxTapCount);

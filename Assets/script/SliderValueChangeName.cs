@@ -48,7 +48,37 @@ public class SliderValueChangeName : MonoBehaviour
                 text.text = "RandomDoors";
                 break;
             case 7:
-                text.text = "ぶっ飛ばし";
+                text.text = "ダルマ落とし";
+                break;
+            case 8:
+                text.text = "ぶっとばし";
+                break;
+            case 9:
+                text.text = "大砲";
+                break;
+            case 10:
+                text.text = "運試しブロック";
+                break;
+            case 11:
+                text.text = "ベルトコンベア";
+                break;
+            case 12:
+                text.text = "福引";
+                break;
+            case 13:
+                text.text = "ブラックジャック";
+                break;
+            case 14:
+                text.text = "タイミングゲーム";
+                break;
+            case 15:
+                text.text = "落ちてくるのを回収";
+                break;
+            case 16:
+                text.text = "持ってる間にげろ";
+                break;
+            case 17:
+                text.text = "謎";
                 break;
             default:
                 text.text = "????????";
