@@ -38,8 +38,6 @@ public class CharaCon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Ground = false;
-        itemAction = GetComponent<CarryItemAction>();
     }
 
     // Update is called once per frame
@@ -51,18 +49,6 @@ public class CharaCon : MonoBehaviour
         g = Ground;
         //移動
         MoveMent();
-        //アイテムの持ち運び
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ItemCarry();
-        }
-        //持っているアイテム毎のアクションを行う
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            itemAction.ItemAction(haveObj);
-        }
-
-
 
     }
 
@@ -72,7 +58,6 @@ public class CharaCon : MonoBehaviour
         if (vel.y <= 0f)
         {
             //0以下にになったらめり込まないように減算をやめる
-            velY = 0f;
             vel = Vector3.zero;
         }
         else
@@ -84,34 +69,13 @@ public class CharaCon : MonoBehaviour
         moveVel.x = horizontal;
         moveVel.z = vertical;
 
-        //ジャンプの区別
-        if(Input.GetKey(KeyCode.X)&&Ground)
-        {
-            //小ジャンプか大ジャンプを区別するためにインクリメント
-            jumpFlame++;
-
-            //一定値以上になったら強制ジャンプ
-            if(jumpFlame>=maxJumpFlame)
-            {
-                DecideJumpPower(jumpFlame);
-                Jump();
-            }
-        }
-
-        //即離した場合
-        if(Input.GetKeyUp(KeyCode.X)&&Ground)
-        {
-            Debug.Log("harf");
-            DecideJumpPower(jumpFlame);
-            Jump();
-        }
         //ジャンプパネルを踏んだら大ジャンプより高いジャンプをする
-        if(GetComponent<TriggerChecker>().jumpPanelFlag)
+        if (GetComponent<TriggerChecker>().jumpPanelFlag)
         {
             HighJump();
         }
 
-        Debug.Log(jumpFlame);
+        //Debug.Log(jumpFlame);
        
         vel.y += velY;
         //transform.position += ((transform.forward) * (speed*vertical) + vel) * Time.deltaTime;
@@ -140,30 +104,30 @@ public class CharaCon : MonoBehaviour
     }
 
 
-    private void DecideJumpPower(int flame)
+    public void DecideJumpPower(int flame)
     {
-        if(flame<=harfJumpFlame)
+        if (flame <= harfJumpFlame)
         {
             velY = harfVelY;
         }
         else
         {
-            velY =maxVelY;
+            velY = maxVelY;
         }
     }
 
-    private void Jump()
+    public void Jump()
     { 
         Debug.Log("jump");
-        jumpFlame = 0;
+        //jumpFlame = 0;
         Ground = false;
     }
 
     private void HighJump()
     {
-        jumpFlame = 0;
         Ground = false;
         velY = 1.5f;
+        //jumpFlame = 0;
     }
 
     private void Animations()
@@ -180,7 +144,7 @@ public class CharaCon : MonoBehaviour
         }
     }
 
-    private void ItemCarry()
+    public void ItemCarry()
     {
         //アイテムを手放す
         if (isCarry && haveObj != null)
@@ -213,6 +177,11 @@ public class CharaCon : MonoBehaviour
         haveObj = null;
         carryObj.ObjRelease();
 
+    }
+
+    public void SetVelY(float y)
+    {
+        velY = y;
     }
 
     public void SetVel(Vector3 invel)
