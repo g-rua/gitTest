@@ -16,10 +16,11 @@ public class JoyntLaserDodge : MonoBehaviour
     private Vector3 vec1;
     private Vector3 vel2;
     private Vector3 vec2;
-    private int pattern;
+
     private int index1=0;
     private int index2=0;
     private float speed = 2;
+    public int pattern;
     public float rot;
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,7 @@ public class JoyntLaserDodge : MonoBehaviour
 
     private void DecidePattern()
     {
-        pattern =1/* Random.Range(0, 3)*/;
+
         switch (pattern)
         {
             case 0:
