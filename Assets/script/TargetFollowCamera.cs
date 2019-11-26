@@ -40,7 +40,7 @@ public class TargetFollowCamera : MonoBehaviour
         {
 
             mouseY = Input.GetAxis("Mouse Y");
-            transform.RotateAround(targetPos, Vector3.forward, mouseY * Time.deltaTime * 300f);
+            transform.RotateAround(targetPos, transform.right, mouseY * Time.deltaTime * 300f);
         }
         //カメラを近づかせたり遠ざけたり
         float scroll = Input.GetAxis("Mouse ScrollWheel");
