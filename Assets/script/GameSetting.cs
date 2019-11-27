@@ -84,7 +84,7 @@ public class GameSetting : MonoBehaviour
 
 
         ActiveImage(playerIndex,ref playerCountImages);
-        Debug.Log("playerCountSetting");
+        //Debug.Log("playerCountSetting");
     }
 
     private void GameStyleSetting()
@@ -125,7 +125,7 @@ public class GameSetting : MonoBehaviour
             blinkPanel.position = new Vector3(415f, 176.5f, 0f);
         }
 
-        Debug.Log("GameStyleSetting");
+        //Debug.Log("GameStyleSetting");
 
     }
 
@@ -144,7 +144,7 @@ public class GameSetting : MonoBehaviour
         }
         LimitIndex(ref gamePlaySettingIndex, 0, 5);
 
-        Debug.Log("PlayCountSetting");
+        //Debug.Log("PlayCountSetting");
     }
 
     private void CheckGameSetting()
