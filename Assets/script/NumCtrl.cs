@@ -15,6 +15,7 @@ public class NumCtrl : MonoBehaviour
     {
         if (no > 9 || no < 0) no = 0;
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        //実際に描画する画像を配列から取り出しいれる
         spriteRenderer.sprite = sprites[no];
     }
 

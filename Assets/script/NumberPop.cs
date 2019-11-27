@@ -4,32 +4,43 @@ using UnityEngine;
 using UnityEngine.Rendering;
 public class NumberPop : MonoBehaviour
 {
+    //数値を出現させる場所
     private Vector3 init_pos;
-
+    //表示させる数値
     private int point;
+    //画像の大きさ
     private float size = 1f;
+    //ソート方法
     private static int dam_sort = 0;
+    //試行回数の最大
     private const int SORT_MAX = 30000;
+
     // Start is called before the first frame update
     void Start()
     {
-        Init(125, new Vector3(0, 0, 0));
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.N))
+
+        
+    }
+    //
+    public void NumPop(int fpoint,Vector3 pos,bool multipleDrawFlag)
+    {
+        if (!multipleDrawFlag)
         {
-            if(transform.childCount!=0)
+            if (transform.childCount != 0)
             {
-                for(int i=transform.childCount-1;i>=0;i--)
+                for (int i = transform.childCount - 1; i >= 0; i--)
                 {
                     Destroy(transform.GetChild(i).gameObject);
                 }
             }
-            Init(Random.Range(0, 500), new Vector3(0, 0, 0));
         }
+        Init(fpoint, pos);
     }
 
     public void Init(int fpoint,Vector3 pos)
@@ -47,24 +58,27 @@ public class NumberPop : MonoBehaviour
 
     private void CreateNum(int fpoint)
     {
+        //桁を割り出す
         int digit = CheckDigit(fpoint);
-
+        //描画するオブジェをプレハブから読み込み
         GameObject obj = LoadGObject("Number", "prefNum");
-        Debug.Log(obj);
+        
+
         for(int i=0;i<digit;i++)
         {
+            //読み込んだオブジェクトをインスタンスする
             GameObject numObj = Instantiate(obj) as GameObject;
-
+            //作り出したオブジェを子として登録
             numObj.transform.parent = transform;
 
+            //今チェックしている桁の数字を出す
             int digNum = GetPointDigit(fpoint, i + 1);
-
+            //数値を画像に置き換える
             numObj.GetComponent<NumCtrl>().ChangeSprite(digNum);
-
+            //サイズを取得
             float size_w = numObj.GetComponent<SpriteRenderer>().bounds.size.x;
-
+            //被らないように位置をずらしていく
             float ajs_x = size_w * i - (size_w * digit) / 2;
-
             Vector3 pos = new Vector3(numObj.transform.position.x - ajs_x, numObj.transform.position.y, numObj.transform.position.z);
             numObj.transform.position = pos;
             numObj = null;
@@ -73,7 +87,9 @@ public class NumberPop : MonoBehaviour
 
     public static int CheckDigit(int num)
     {
+        //０の場合1桁として返す
         if (num == 0) return 1;
+        //対数によって桁を割り出す
         return (num == 0) ? 1 : ((int)Mathf.Log10(num) + 1);
     }
 
@@ -95,7 +111,9 @@ public class NumberPop : MonoBehaviour
     public static GameObject LoadGObject(string dir_name,string file_name)
     {
         GameObject retObj;
+        //Resourcesフォルダにあるものから読み込む
         retObj = (GameObject)Resources.Load(dir_name + "/" + file_name);
+        //nullだったらエラー
         if(retObj==null)
         {
             Debug.Log("読み込みエラー");
