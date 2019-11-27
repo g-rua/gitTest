@@ -16,13 +16,13 @@ public class GameSetting : MonoBehaviour
     //今どの画像を描画させるかのインデックス
     public int drawSettingImageIndex;
     //-----------------------------------
-    [SerializeField] GameObject[] playerCountButton;
-    [SerializeField] GameObject[] playerCountButtonObj;
+    //[SerializeField] GameObject[] playerCountButton;
+    //[SerializeField] GameObject[] playerCountButtonObj;
 
-    [SerializeField] Image buttonImage;
-    [SerializeField] Image[] setImage;
-    [SerializeField] Sprite playCountImage;
-    [SerializeField] GameObject playCountSetting;
+    //[SerializeField] Image buttonImage;
+    //[SerializeField] Image[] setImage;
+    //[SerializeField] Sprite playCountImage;
+    //[SerializeField] GameObject playCountSetting;
     //-------------------------------------
 
     [SerializeField] Transform playerCountImages;
@@ -32,6 +32,7 @@ public class GameSetting : MonoBehaviour
     [SerializeField] Transform checkTextParent;
     [SerializeField] Transform settingImages;
     [SerializeField] RectTransform blinkPanel;
+    [SerializeField] NumberPop numberPop;
     // Start is called before the first frame update
     void Start()
     {
@@ -140,10 +141,11 @@ public class GameSetting : MonoBehaviour
             //PlayCountSetting(2, playerCountButton.Length);
             //ChangeSprite();
             settingIndex++;
+
             DrawCheckText();
         }
         LimitIndex(ref gamePlaySettingIndex, 0, 5);
-
+        numberPop.NumPop(gamePlaySettingIndex, new Vector3(0, 0, -2), false);
         //Debug.Log("PlayCountSetting");
     }
 
