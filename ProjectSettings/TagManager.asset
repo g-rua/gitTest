@@ -59,3 +59,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: damage
+    uniqueID: 1593608013
+    locked: 0
