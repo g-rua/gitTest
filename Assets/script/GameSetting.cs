@@ -15,15 +15,7 @@ public class GameSetting : MonoBehaviour
     public int gamePlaySettingIndex;
     //今どの画像を描画させるかのインデックス
     public int drawSettingImageIndex;
-    //-----------------------------------
-    //[SerializeField] GameObject[] playerCountButton;
-    //[SerializeField] GameObject[] playerCountButtonObj;
 
-    //[SerializeField] Image buttonImage;
-    //[SerializeField] Image[] setImage;
-    //[SerializeField] Sprite playCountImage;
-    //[SerializeField] GameObject playCountSetting;
-    //-------------------------------------
 
     [SerializeField] Transform playerCountImages;
     [SerializeField] GameObject fader;
@@ -75,7 +67,7 @@ public class GameSetting : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return))
         {
             //人数の決定
-            playerCount = playerIndex;
+            playerCount = playerIndex+1;
             checkTexts[0].text = playerCount.ToString();
 
             //次の段階へ行くためにインクリメント
@@ -107,6 +99,10 @@ public class GameSetting : MonoBehaviour
                 DrawCheckText();
             }
             
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            settingIndex--;
         }
         //直前のインデクスの取り出し
         int lastIndex = gameStyleIndex;       
@@ -141,8 +137,12 @@ public class GameSetting : MonoBehaviour
             //PlayCountSetting(2, playerCountButton.Length);
             //ChangeSprite();
             settingIndex++;
-
+            numberPop.gameObject.SetActive(false);
             DrawCheckText();
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        { 
+            settingIndex--;
         }
         LimitIndex(ref gamePlaySettingIndex, 0, 5);
         numberPop.NumPop(gamePlaySettingIndex, new Vector3(0, 0, -2), false);
@@ -164,6 +164,20 @@ public class GameSetting : MonoBehaviour
             {
                 ActiveFader("gamecelecter");
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            if (gameStyleIndex == 0)
+            {
+                settingIndex--;
+            }
+            if (gameStyleIndex == 1)
+            {
+                settingIndex -= 2;
+            }
+            settingImages.gameObject.SetActive(true);
+            numberPop.gameObject.SetActive(true);
+            UnDrawCheckText();
         }
     }
 
@@ -214,6 +228,14 @@ public class GameSetting : MonoBehaviour
         }
     }
 
+    private void UnDrawCheckText()
+    {
+        for (int i = 0; i < checkTextParent.childCount; i++)
+        {
+            checkTextParent.GetChild(i).GetComponent<Text>().color = new Color(0, 0, 0, 0);
+        }
+    }
+
 
     private void ActiveImage(int index,ref Transform obj)
     {
@@ -238,17 +260,6 @@ public class GameSetting : MonoBehaviour
 
     }
 
-    //private void ChangeSprite()
-    //{
-    //    for (int i = 0; i < playerCountButtonObj.Length; i++)
-    //    {
-    //        Destroy(playerCountButtonObj[i]);
-    //    }
-    //    //画像を差し替える
-    //    setImage[settingIndex].sprite = buttonImage.sprite;
-    //    setImage[settingIndex].color = Color.white;
-    //    buttonImage.sprite = playCountImage;
-    //}
 
 
 }
