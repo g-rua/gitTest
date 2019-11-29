@@ -5,7 +5,7 @@
         _MainTex ("Texture", 2D) = "white" {}
 		//X方向に関するパラメータ
 		_XSpeed("XScrollSpeed",Range(-5,5)) = 0
-		_YSpeed("YScrollSpeed",Range(0,5))=0
+		_YSpeed("YScrollSpeed",Range(-5,5))=0
     }
     SubShader
     {

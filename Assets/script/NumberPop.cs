@@ -107,7 +107,7 @@ public class NumberPop : MonoBehaviour
         }
         return res;
     }
-
+    
     public static GameObject LoadGObject(string dir_name,string file_name)
     {
         GameObject retObj;

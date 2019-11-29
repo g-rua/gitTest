@@ -15,6 +15,7 @@ public class EmphasizeTheFrameByIndex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
             gameIndex++;
@@ -43,13 +44,16 @@ public class EmphasizeTheFrameByIndex : MonoBehaviour
         {
             Color col = new Color(123f,255f,76f,255f);
             Vector3 scale = new Vector3(1, 1, 1);
+            bool flag = false;
             if(i==gameIndex)
             {
+                flag = true;
                 col = Color.red;
                 scale = new Vector3(1.3f, 1.3f, 1f);
             }
 
             transform.GetChild(i).GetComponent<Image>().color = col;
+            transform.GetChild(i).GetChild(1).gameObject.SetActive(flag);
             transform.GetChild(i).localScale = scale;
         }
     }
