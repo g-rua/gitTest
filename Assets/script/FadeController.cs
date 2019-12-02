@@ -26,7 +26,7 @@ public class FadeController : MonoBehaviour
     void Start()
     {
         maxAlpha = 1f;
-        FadeIn(0);
+        //FadeIn(0);
         myColor = Color.white;
         myColor.a = 0;
 
