@@ -687,6 +687,7 @@ MonoBehaviour:
   one: 1
   reverse: 0
   end: 0
+  title: 1
 --- !u!1 &376364942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1490,7 @@ MonoBehaviour:
   one: 1
   reverse: 0
   end: 0
+  title: 1
 --- !u!1 &1275405209
 GameObject:
   m_ObjectHideFlags: 0
@@ -5721,7 +5723,7 @@ PrefabInstance:
     - target: {fileID: 6434339507710080945, guid: 32958ed4559bc594f98f6faba9ee7c2e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6440115141856687757, guid: 32958ed4559bc594f98f6faba9ee7c2e,
         type: 3}

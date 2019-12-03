@@ -18,6 +18,7 @@ public class GroundChecker : MonoBehaviour
     {
         
     }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Ground");
@@ -29,7 +30,7 @@ public class GroundChecker : MonoBehaviour
     {
         Debug.Log("Air");
         enterNum--;
-        if(enterNum<=0)
+        if (enterNum <= 0)
         {
             OnExitGround.Invoke();
         }
