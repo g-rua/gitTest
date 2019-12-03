@@ -12,6 +12,7 @@ public class TitleImageControll : MonoBehaviour
     public float one=1f;
     public bool reverse;
     public bool end;
+    public bool title;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,26 +22,29 @@ public class TitleImageControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 vel = transform.position - goalPos.position;
-        if (end)
+        if (title)
         {
-            //goalPos = target;
-            //if (Mathf.Abs(vel.x) <= 5f)
-            //{
+            Vector3 vel = transform.position - goalPos.position;
+            if (end)
+            {
+                //goalPos = target;
+                //if (Mathf.Abs(vel.x) <= 5f)
+                //{
                 transform.position = goalPos.position;
                 speed = Vector3.zero;
-            //}
-        }
-        else
-        {
-            if (Mathf.Abs(vel.x) <= 5f)
-            {
-                speed.x *= -1f;
-                end = true;
+                //}
             }
+            else
+            {
+                if (Mathf.Abs(vel.x) <= 5f)
+                {
+                    speed.x *= -1f;
+                    end = true;
+                }
 
+            }
+            speed.y = ((Mathf.Sin(Time.time * 3f)) * 8f);
         }
-        speed.y = ((Mathf.Sin(Time.time * 3f)) * 8f);
 
         transform.position += speed;
 

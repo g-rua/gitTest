@@ -17,6 +17,12 @@ public class GameSetting : MonoBehaviour
     public int drawSettingImageIndex;
 
     public float rot;
+
+    private Color initImageColor;
+    private Color initTextColor;
+    private float addAlpha = 0.03f;
+    [SerializeField] Transform[] humanPoppers;
+    [SerializeField] Transform[] humanDest;
     [SerializeField] Transform cameraInitPos;
     [SerializeField] Transform cameraNextPos;
 
@@ -28,21 +34,30 @@ public class GameSetting : MonoBehaviour
     [SerializeField] Transform settingImages;
     [SerializeField] RectTransform blinkPanel;
     [SerializeField] NumberPop numberPop;
+    [SerializeField] Image initDrawImage;
+    [SerializeField] Text initDrawText;
     // Start is called before the first frame update
     void Start()
     {
         transform.position = cameraInitPos.position;
+        initImageColor = new Color(255, 255,255, 0);
+        initTextColor = new Color(0, 0,0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        initImageColor.a += addAlpha;
+        initTextColor.a += addAlpha;
+        initDrawImage.color = initImageColor;
+        initDrawText.color = initTextColor;
         Vector3 vec = cameraNextPos.position - transform.position;
         if(vec.magnitude<=0f)
         {
             vec = Vector3.zero;
             transform.position = cameraNextPos.position;
             transform.rotation = cameraNextPos.rotation;
+            
         }
         else
         {
@@ -91,7 +106,10 @@ public class GameSetting : MonoBehaviour
             //人数の決定
             playerCount = playerIndex+1;
             checkTexts[0].text = playerCount.ToString();
-
+            for (int i = 0; i <= playerIndex; i++)
+            {
+                humanPoppers[i].GetComponent<SettingHumanPop>().HumanPop(humanDest[i]);
+            }
             //次の段階へ行くためにインクリメント
             settingIndex++;
         }
@@ -124,6 +142,11 @@ public class GameSetting : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
+            for (int i = 0; i <= playerIndex; i++)
+            {
+                humanPoppers[i].GetComponent<SettingHumanPop>().popCount = 0;
+                Destroy(humanPoppers[i].GetComponent<SettingHumanPop>().human);
+            }
             settingIndex--;
         }
         //直前のインデクスの取り出し
