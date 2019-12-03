@@ -16,6 +16,9 @@ public class GameSetting : MonoBehaviour
     //今どの画像を描画させるかのインデックス
     public int drawSettingImageIndex;
 
+    public float rot;
+    [SerializeField] Transform cameraInitPos;
+    [SerializeField] Transform cameraNextPos;
 
     [SerializeField] Transform playerCountImages;
     [SerializeField] GameObject fader;
@@ -28,11 +31,30 @@ public class GameSetting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = cameraInitPos.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 vec = cameraNextPos.position - transform.position;
+        if(vec.magnitude<=0f)
+        {
+            vec = Vector3.zero;
+            transform.position = cameraNextPos.position;
+            transform.rotation = cameraNextPos.rotation;
+        }
+        else
+        {
+
+        transform.position += (vec * 2)*Time.deltaTime;
+            if (transform.rotation.x <= cameraNextPos.rotation.x)
+            {
+                rot = 0f;
+                transform.rotation = cameraNextPos.rotation;
+            }
+            transform.Rotate(Vector3.right, rot);
+        }
         //今何段階目かのインデクスによって分岐
         switch (settingIndex)
         {

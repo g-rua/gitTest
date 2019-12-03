@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class sceneMove : MonoBehaviour
 {
     public string sceneName;
@@ -14,12 +14,20 @@ public class sceneMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            NoFadeChange();
+        }
     }
 
     public void SceneChange()
     {
         GetComponent<FadeController>().FadeOut(sceneName);
+    }
+
+    public void NoFadeChange()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public void OnClick()
