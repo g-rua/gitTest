@@ -22,6 +22,7 @@ TagManager:
   - MoveFloor
   - FallItem
   - HaveAddPoint
+  - Boshoot
   layers:
   - Default
   - TransparentFX

@@ -47,4 +47,12 @@ public class TitleCharaMove : MonoBehaviour
 
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="Boshoot")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

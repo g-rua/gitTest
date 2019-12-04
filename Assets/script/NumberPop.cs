@@ -79,7 +79,7 @@ public class NumberPop : MonoBehaviour
             float size_w = numObj.GetComponent<SpriteRenderer>().bounds.size.x;
             //被らないように位置をずらしていく
             float ajs_x = size_w * i - (size_w * digit) / 2;
-            Vector3 pos = new Vector3(numObj.transform.position.x - ajs_x, numObj.transform.position.y, numObj.transform.position.z);
+            Vector3 pos = new Vector3(init_pos.x - ajs_x, init_pos.y, init_pos.z);
             numObj.transform.position = pos;
             numObj = null;
         }
