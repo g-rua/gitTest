@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 public class NumberPop : MonoBehaviour
 {
+    public string objname;
     //数値を出現させる場所
     private Vector3 init_pos;
     //表示させる数値
@@ -14,11 +15,14 @@ public class NumberPop : MonoBehaviour
     private static int dam_sort = 0;
     //試行回数の最大
     private const int SORT_MAX = 30000;
-
+    public bool testDraw;
     // Start is called before the first frame update
     void Start()
     {
-
+        if(testDraw)
+        {
+            NumPop(60, transform.position, false);
+        }
     }
 
     // Update is called once per frame
@@ -61,7 +65,7 @@ public class NumberPop : MonoBehaviour
         //桁を割り出す
         int digit = CheckDigit(fpoint);
         //描画するオブジェをプレハブから読み込み
-        GameObject obj = LoadGObject("Number", "prefNum");
+        GameObject obj = LoadGObject("Number", objname);
         
 
         for(int i=0;i<digit;i++)
