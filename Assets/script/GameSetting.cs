@@ -7,6 +7,7 @@ public class GameSetting : MonoBehaviour
     static int playerCount=0;
     //プレイヤー人数用のインデックス
     public int playerIndex;
+    public int lastPlayerIndex;
     //今どこの設定をしているかのインデックス
     public int settingIndex;
     //どう遊ぶかを決めるインデックス
@@ -25,7 +26,7 @@ public class GameSetting : MonoBehaviour
     [SerializeField] Transform[] humanDest;
     [SerializeField] Transform cameraInitPos;
     [SerializeField] Transform cameraNextPos;
-
+    [SerializeField] GameObject[] fallFloor;
     [SerializeField] Transform playerCountImages;
     [SerializeField] GameObject fader;
     [SerializeField] Text settingText;
@@ -110,6 +111,20 @@ public class GameSetting : MonoBehaviour
             {
                 humanPoppers[i].GetComponent<SettingHumanPop>().HumanPop(humanDest[i]);
             }
+            if(lastPlayerIndex>playerIndex)
+            {
+                for(int i=playerIndex+1;i<=lastPlayerIndex;i++)
+                {
+                    fallFloor[i].GetComponent<FallFloorMove>().BoShoot();
+                }
+            }
+            else
+            {
+                for (int i = playerIndex; i <= lastPlayerIndex; i++)
+                {
+                    humanPoppers[i].GetComponent<SettingHumanPop>().HumanPop(humanDest[i]);
+                }
+            }
             //次の段階へ行くためにインクリメント
             settingIndex++;
         }
@@ -130,23 +145,27 @@ public class GameSetting : MonoBehaviour
             {
                 settingIndex++;
                 checkTexts[1].text = "ランダム";
+                numberPop.gameObject.SetActive(true);
             }
-            if(gameStyleIndex==1)
+            if (gameStyleIndex==1)
             {
                 settingIndex += 2;
                 checkTexts[1].text = "自分で選択";
                 checkTexts[2].text = "自由";
                 DrawCheckText();
             }
-            
+            for (int i = 0; i <= playerIndex; i++)
+            {
+                humanPoppers[i].GetComponent<SettingHumanPop>().HumanPop(humanDest[i]);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             for (int i = 0; i <= playerIndex; i++)
             {
-                humanPoppers[i].GetComponent<SettingHumanPop>().popCount = 0;
-                Destroy(humanPoppers[i].GetComponent<SettingHumanPop>().human);
+                fallFloor[i].GetComponent<FallFloorMove>().BoShoot();
             }
+            lastPlayerIndex = playerIndex;
             settingIndex--;
         }
         //直前のインデクスの取り出し
@@ -186,11 +205,14 @@ public class GameSetting : MonoBehaviour
             DrawCheckText();
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
-        { 
+        {
+            gamePlaySettingIndex = 0;
+            numberPop.gameObject.SetActive(false);
+
             settingIndex--;
         }
         LimitIndex(ref gamePlaySettingIndex, 0, 5);
-        numberPop.NumPop(gamePlaySettingIndex, new Vector3(0, 0, -2), false);
+        numberPop.NumPop(gamePlaySettingIndex, new Vector3(6.7f, 8, -44), false);
         //Debug.Log("PlayCountSetting");
     }
 

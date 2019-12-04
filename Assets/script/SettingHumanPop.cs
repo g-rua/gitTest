@@ -22,7 +22,7 @@ public class SettingHumanPop : MonoBehaviour
     public void HumanPop(Transform dest)
     {
 
-        if (popCount == 0)
+        if (human==null)
         {
             human=Instantiate(popHuman, transform.position, transform.rotation)as GameObject;
             human.GetComponent<TitleCharaMove>().destination = dest;
