@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TranslateTest : MonoBehaviour
+public class GameResultControll : MonoBehaviour
 {
+    [SerializeField] ShutterControll shutter;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class TranslateTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position -= new Vector3(0, 10, 0);
+        shutter.ShutterOpen();
     }
 }

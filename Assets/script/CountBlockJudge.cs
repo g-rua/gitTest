@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CountBlockJudge : MonoBehaviour
 {
+    [SerializeField] GameObject shutter;
     [SerializeField] CharaCon[] characterControll;
     [SerializeField] NumberPop gameCount;
     [SerializeField] NumberPop team1Count;
@@ -39,6 +40,7 @@ public class CountBlockJudge : MonoBehaviour
             {
                 chara.enabled = false;
             }
+            shutter.GetComponent<ShutterControll>().ShutterClose();
         }
         gameCount.NumPop(drawTime, new Vector3(0.96f, 8.6f, -1.2f), false);
         gameCount.gameObject.transform.rotation = Quaternion.Euler(45f,0,0);
