@@ -1517,8 +1517,9 @@ GameObject:
   - component: {fileID: 1071754265}
   - component: {fileID: 1071754264}
   - component: {fileID: 1071754266}
+  - component: {fileID: 1071754267}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Shutter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1540,7 +1541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 859}
+  m_AnchoredPosition: {x: -280, y: 1000}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1071754264
@@ -1592,6 +1593,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae674e382f711b40827a15a5318a09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initPos: {x: 0, y: 960, z: 0}
+  endPos: {x: 0, y: 0, z: 0}
+  moveFlag: 0
+--- !u!114 &1071754267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071754262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fe334c5d517494f828bf0d46f1fbbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: gameResult
 --- !u!1 &1300116109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,6 +1861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd85a094d44e41429ec904012459737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shutter: {fileID: 1071754262}
   characterControll:
   - {fileID: 2056320849}
   - {fileID: 1887143298}
@@ -1856,7 +1874,7 @@ MonoBehaviour:
   counts: 0000000000000000
   teamCount: 2
   gameTime: 0
-  drawTime: 10
+  drawTime: 3
   gameEnd: 0
 --- !u!4 &1440229572
 Transform:
