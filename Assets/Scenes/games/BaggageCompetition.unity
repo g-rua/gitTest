@@ -1593,6 +1593,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae674e382f711b40827a15a5318a09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players:
+  - {fileID: 2056320848}
+  - {fileID: 1887143292}
+  save: {fileID: 0}
+  award: []
   initPos: {x: 0, y: 960, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   moveFlag: 0
@@ -1861,6 +1866,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd85a094d44e41429ec904012459737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players:
+  - {fileID: 2056320848}
+  - {fileID: 1887143292}
   shutter: {fileID: 1071754262}
   characterControll:
   - {fileID: 2056320849}
@@ -1872,9 +1880,12 @@ MonoBehaviour:
   - {fileID: 564531030}
   - {fileID: 1772924178}
   counts: 0000000000000000
+  st: 
+  s: 0
+  awal: []
   teamCount: 2
   gameTime: 0
-  drawTime: 3
+  drawTime: 10
   gameEnd: 0
 --- !u!4 &1440229572
 Transform:
@@ -2210,6 +2221,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030499a4bdb6a6f4ca39844733b72765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1887143300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887143292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ce1b7bae5678545b64c891921644ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScore: 0
+  gamePoint: 0
 --- !u!1 &1901541896
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,6 +2593,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030499a4bdb6a6f4ca39844733b72765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2056320856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056320848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ce1b7bae5678545b64c891921644ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScore: 0
+  gamePoint: 0
 --- !u!1001 &5007154262468900101
 PrefabInstance:
   m_ObjectHideFlags: 0
