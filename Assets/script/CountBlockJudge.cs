@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CountBlockJudge : MonoBehaviour
 {
+    [SerializeField] GameObject[] players;
     [SerializeField] GameObject shutter;
     [SerializeField] CharaCon[] characterControll;
     [SerializeField] NumberPop gameCount;
@@ -11,14 +12,24 @@ public class CountBlockJudge : MonoBehaviour
     [SerializeField] NumberPop team2Count;
     [SerializeField] GameObject[] goals;
     [SerializeField] int[] counts;
+    [SerializeField] int[] st;
+    [SerializeField] int s;
+    [SerializeField] List<GameObject> awal;
     public int teamCount;
     public int gameTime;
     public int drawTime;
+    
     public bool gameEnd;
     // Start is called before the first frame update
     void Start()
     {
-        
+        for(int i=0;i<st.Length;i++)
+        {
+           
+            st[i] = Random.Range(0, 1000);
+        }
+
+
     }
 
     // Update is called once per frame
@@ -40,6 +51,7 @@ public class CountBlockJudge : MonoBehaviour
             {
                 chara.enabled = false;
             }
+
             shutter.GetComponent<ShutterControll>().ShutterClose();
         }
         gameCount.NumPop(drawTime, new Vector3(0.96f, 8.6f, -1.2f), false);
@@ -47,6 +59,9 @@ public class CountBlockJudge : MonoBehaviour
         for(int i=0;i<teamCount;i++)
         {
             counts[i] = goals[i].GetComponent<OnBlockCounter>().GetCount();
+            players[i].GetComponent<GameScoreManage>().gamePoint = counts[i];
         }
     }
+
+
 }
