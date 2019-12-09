@@ -6,9 +6,11 @@ public class GameScore : MonoBehaviour
 {
     public static int scoreA;
     public static int scoreB;
+    public static int[] score = new int[4];
     // Start is called before the first frame update
     void Start()
     {
+        
         scoreA = 0;
         scoreB = 0;
     }
@@ -23,5 +25,9 @@ public class GameScore : MonoBehaviour
     {
         scoreA = 0;
         scoreB = 0;
+        for(int i=0;i<score.Length;i++)
+        {
+            score[i] = 0;
+        }
     }
 }

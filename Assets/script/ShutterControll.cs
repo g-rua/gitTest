@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShutterControll : MonoBehaviour
@@ -7,20 +8,43 @@ public class ShutterControll : MonoBehaviour
     [SerializeField] GameObject[] players;
     [SerializeField] GameObject save;
     static GameObject[] award;
+    public int[] rankScore = new int[4];
+    public List<int> test;
+    public List<int> ts;
+    public int[] kari;
     private Vector3 vel;
     public Vector3 initPos;
     public Vector3 endPos;
     public bool moveFlag;
+    public int maxidx;
+    public int idxscore;
+    public int rankidx;
+    public int rank=0;
+
     // Start is called before the first frame update
     void Start()
     {
         transform.position = initPos;
+        for(int i=0;i<rankScore.Length;i++)
+        {
+            rankScore[i] = 100 - (25*i);
+           
+            ts[i]=Random.Range(0, 500);
+            
+        }
+        for (int i = 0; i < ts.Count; i++)
+        {
+            test.Add(ts[i]);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            TestSort();
+        }
     }
 
     public void ShutterClose()
@@ -77,6 +101,11 @@ public class ShutterControll : MonoBehaviour
             }
         }
         Debug.Log(award[0]);
+        
+        /*ランク付け方法
+         　付加ポイントは上から100,75,50,25
+           それぞれゲームスコアに応じて降順にされた
+           キャラ達に与えていく*/
         //for (int i = 0; i < st.Length; i++)
         //{
         //    if (i + 1 < st.Length)
@@ -92,6 +121,38 @@ public class ShutterControll : MonoBehaviour
 
         //    }
         //}
+    }
+
+    private void TestSort()
+    {
+
+        //while (test.Count > 0)
+        //{
+
+        //最大の数値が入っているインデクスを返す
+            maxidx = test.IndexOf(test.Max());
+            //得たインデクスの中にあるスコアを取得する
+            idxscore = test[maxidx];
+        for (int i = 0; i < ts.Count; i++)
+        {
+            if(ts[i]==idxscore)
+            {
+                rankidx = i;
+                break;
+            }
+        }
+            kari[rankidx] += rankScore[rank++];
+            test.RemoveAt(maxidx);
+
+        //    if(rank>3)
+        //    {
+        //        break;
+        //    }
+
+
+        //}
+
+        //test.Clear();
     }
 }
 
