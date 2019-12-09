@@ -1597,10 +1597,15 @@ MonoBehaviour:
   - {fileID: 2056320848}
   - {fileID: 1887143292}
   save: {fileID: 0}
-  award: []
+  rankScore: 00000000000000000000000000000000
+  test: 
+  ts: 00000000000000000000000000000000
+  kari: 00000000000000000000000000000000
   initPos: {x: 0, y: 960, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   moveFlag: 0
+  maxidx: 0
+  rank: 0
 --- !u!114 &1071754267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1885,7 +1890,7 @@ MonoBehaviour:
   awal: []
   teamCount: 2
   gameTime: 0
-  drawTime: 10
+  drawTime: 1000
   gameEnd: 0
 --- !u!4 &1440229572
 Transform:
