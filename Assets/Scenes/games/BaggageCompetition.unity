@@ -405,6 +405,7 @@ GameObject:
   - component: {fileID: 348113992}
   - component: {fileID: 348113991}
   - component: {fileID: 348113994}
+  - component: {fileID: 348113995}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -499,6 +500,28 @@ MonoBehaviour:
   isFade: 0
   isFadeIn: 0
   isFadeOut: 0
+--- !u!114 &348113995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348113990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58aa852670c503448c40ae3df3ba5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shutter: {fileID: 1071754262}
+  characterControll:
+  - {fileID: 2056320849}
+  - {fileID: 1887143298}
+  gameCount: {fileID: 7109641799814783081}
+  team1Count: {fileID: 0}
+  team2Count: {fileID: 0}
+  gameTime: 0
+  drawTime: 10
+  gameEnd: 0
 --- !u!1 &367372904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,13 +1621,13 @@ MonoBehaviour:
   - {fileID: 1887143292}
   save: {fileID: 0}
   rankScore: 00000000000000000000000000000000
-  test: 
-  ts: 00000000000000000000000000000000
-  kari: 00000000000000000000000000000000
+  gamePointList: 
   initPos: {x: 0, y: 960, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   moveFlag: 0
   maxidx: 0
+  idxscore: 0
+  rankidx: 0
   rank: 0
 --- !u!114 &1071754267
 MonoBehaviour:
@@ -1874,24 +1897,11 @@ MonoBehaviour:
   players:
   - {fileID: 2056320848}
   - {fileID: 1887143292}
-  shutter: {fileID: 1071754262}
-  characterControll:
-  - {fileID: 2056320849}
-  - {fileID: 1887143298}
-  gameCount: {fileID: 7109641799814783081}
-  team1Count: {fileID: 0}
-  team2Count: {fileID: 0}
   goals:
   - {fileID: 564531030}
   - {fileID: 1772924178}
   counts: 0000000000000000
-  st: 
-  s: 0
-  awal: []
   teamCount: 2
-  gameTime: 0
-  drawTime: 1000
-  gameEnd: 0
 --- !u!4 &1440229572
 Transform:
   m_ObjectHideFlags: 0
