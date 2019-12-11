@@ -512,6 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58aa852670c503448c40ae3df3ba5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fader: {fileID: 348113994}
   shutter: {fileID: 1071754262}
   characterControll:
   - {fileID: 2056320849}
@@ -521,6 +522,7 @@ MonoBehaviour:
   team2Count: {fileID: 0}
   gameTime: 0
   drawTime: 10
+  gameStart: 0
   gameEnd: 0
 --- !u!1 &367372904
 GameObject:

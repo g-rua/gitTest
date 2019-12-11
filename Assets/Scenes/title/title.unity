@@ -392,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1bbb91c8d96cb2446a07151ce95d1f0f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1bbb91c8d96cb2446a07151ce95d1f0f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -461,6 +461,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -2.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3524198978522257636, guid: 905659cf277530743bb92e66389ad65c,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1094717081}
     - target: {fileID: 8466384591517526761, guid: 905659cf277530743bb92e66389ad65c,
         type: 3}
       propertyPath: m_Name
@@ -541,11 +546,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2118154894}
-    - target: {fileID: 3524198978522257636, guid: 905659cf277530743bb92e66389ad65c,
-        type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 1094717081}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 905659cf277530743bb92e66389ad65c, type: 3}
 --- !u!1 &314758152
@@ -1163,6 +1163,7 @@ GameObject:
   - component: {fileID: 970298193}
   - component: {fileID: 970298196}
   - component: {fileID: 970298197}
+  - component: {fileID: 970298198}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1292,6 +1293,18 @@ MonoBehaviour:
   isFade: 0
   isFadeIn: 0
   isFadeOut: 0
+--- !u!114 &970298198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970298192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea363fcc10663aa4182035f52aee94b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1007269281 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8518333261449997365, guid: 905659cf277530743bb92e66389ad65c,
@@ -1704,7 +1717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6b348d046daee174ba0ca308fcbe121e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6b348d046daee174ba0ca308fcbe121e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3386,7 +3399,7 @@ PrefabInstance:
     - target: {fileID: 4017359017749981955, guid: fb539cc724255d2498155cd1c8c64d87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.013495417
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4017359017749981955, guid: fb539cc724255d2498155cd1c8c64d87,
         type: 3}
@@ -5322,7 +5335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f6e999359d202f6408dc1a03aed6dbc3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f6e999359d202f6408dc1a03aed6dbc3, type: 3}
       propertyPath: m_LocalPosition.z

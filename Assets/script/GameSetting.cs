@@ -18,7 +18,7 @@ public class GameSetting : MonoBehaviour
     public int drawSettingImageIndex;
 
     public float rot;
-
+    public int stopTime;
     private Color initImageColor;
     private Color initTextColor;
     private float addAlpha = 0.03f;
@@ -37,6 +37,7 @@ public class GameSetting : MonoBehaviour
     [SerializeField] NumberPop numberPop;
     [SerializeField] Image initDrawImage;
     [SerializeField] Text initDrawText;
+    [SerializeField] TitleImageControll[] tic;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,28 +49,35 @@ public class GameSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        initImageColor.a += addAlpha;
-        initTextColor.a += addAlpha;
-        initDrawImage.color = initImageColor;
-        initDrawText.color = initTextColor;
-        Vector3 vec = cameraNextPos.position - transform.position;
-        if(vec.magnitude<=0f)
+        if (stopTime-- < 0)
         {
-            vec = Vector3.zero;
-            transform.position = cameraNextPos.position;
-            transform.rotation = cameraNextPos.rotation;
-            
-        }
-        else
-        {
-
-        transform.position += (vec * 2)*Time.deltaTime;
-            if (transform.rotation.x <= cameraNextPos.rotation.x)
-            {
-                rot = 0f;
-                transform.rotation = cameraNextPos.rotation;
+            foreach(var a in tic)
+            { 
+                a.enabled = true;
             }
-            transform.Rotate(Vector3.right, rot);
+            initImageColor.a += addAlpha;
+            initTextColor.a += addAlpha;
+            initDrawImage.color = initImageColor;
+            initDrawText.color = initTextColor;
+            Vector3 vec = cameraNextPos.position - transform.position;
+            if (vec.magnitude <= 0f)
+            {
+                vec = Vector3.zero;
+                transform.position = cameraNextPos.position;
+                transform.rotation = cameraNextPos.rotation;
+
+            }
+            else
+            {
+
+                transform.position += (vec * 2) * Time.deltaTime;
+                if (transform.rotation.x <= cameraNextPos.rotation.x)
+                {
+                    rot = 0f;
+                    transform.rotation = cameraNextPos.rotation;
+                }
+                transform.Rotate(Vector3.right, rot);
+            }
         }
         //今何段階目かのインデクスによって分岐
         switch (settingIndex)
@@ -222,6 +230,7 @@ public class GameSetting : MonoBehaviour
         Debug.Log("CheckGameSetting");
         if(Input.GetKeyDown(KeyCode.Return))
         {
+            GameResultControll.gameStyle = gameStyleIndex;
             if (gameStyleIndex == 0)
             {
                 ActiveFader("RandomGameCelecter");
@@ -229,7 +238,7 @@ public class GameSetting : MonoBehaviour
 
             if(gameStyleIndex==1)
             {
-                ActiveFader("gamecelecter");
+                ActiveFader("gameResult");
             }
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
