@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManage : MonoBehaviour
 {
+    [SerializeField] FadeController fader;
     [SerializeField] GameObject shutter;
     [SerializeField] CharaCon[] characterControll;
     [SerializeField] NumberPop gameCount;
@@ -11,29 +12,36 @@ public class GameManage : MonoBehaviour
     [SerializeField] NumberPop team2Count;
     public int gameTime;
     public int drawTime;
-
+    public bool gameStart;
     public bool gameEnd;
     // Start is called before the first frame update
     void Start()
     {
-        
+        fader.FadeIn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ゲームタイムを進めていく
-        gameTime++;
-        //６０フレーム毎に本当の時間を減らす
-        if (gameTime > 60)
+        if(fader.gameObject.activeInHierarchy)
         {
-            gameTime = 0;
-            drawTime--;
+            gameStart = !fader.isFadeIn;
         }
-        //ゲームタイムが０になったら終了処理用のフラグを立てる
-        if (drawTime < 0)
+        if (gameStart)
         {
-            gameEnd = true;
+            //ゲームタイムを進めていく
+            gameTime++;
+            //６０フレーム毎に本当の時間を減らす
+            if (gameTime > 60)
+            {
+                gameTime = 0;
+                drawTime--;
+            }
+            //ゲームタイムが０になったら終了処理用のフラグを立てる
+            if (drawTime < 0)
+            {
+                gameEnd = true;
+            }
         }
         if (gameEnd)
         {
