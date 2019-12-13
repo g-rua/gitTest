@@ -1313,7 +1313,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28194
+  m_Name: pb_Mesh16448
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1719,7 +1719,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28138
+  m_Name: pb_Mesh16394
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1987,6 +1987,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 899560552}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &899560554 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800000, guid: 5a97962f7d5ba4df0823334b52c7c02c,
+    type: 3}
+  m_PrefabInstance: {fileID: 899560552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &939110573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,9 +2040,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c6387a19e724a4581c2c5ab81ea60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
-  cover: {fileID: 0}
-  ps: {fileID: 0}
+  body: {fileID: 1089743353}
+  cover: {fileID: 297498011}
+  ps: {fileID: 899560554}
   bom: {fileID: 0}
   flower: {fileID: 0}
   item: {fileID: 0}
