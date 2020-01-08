@@ -10,6 +10,9 @@ public class ResultBoxControll : MonoBehaviour
     [SerializeField] GameObject bom;
     [SerializeField] GameObject flower;
     [SerializeField] GameObject item;
+    [SerializeField] Transform itemPopPos;
+    [SerializeField] ResultBoxCover coverScript;
+    private bool resultItemPop;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +22,26 @@ public class ResultBoxControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       if(Input.GetKeyDown(KeyCode.Return))
+        {
+            BoxOpen();
+        }
+
+
     }
 
     public void BoxOpen()
     {
+        coverScript.enabled = true;
+        ps.Play();
 
+        if (coverScript.open)
+        {
+            if (!resultItemPop)
+            {
+                GameObject.Instantiate(bom, itemPopPos.position, transform.rotation);
+                resultItemPop = true;
+            }
+        }
     }
 }
