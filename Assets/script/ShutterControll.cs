@@ -18,7 +18,7 @@ public class ShutterControll : MonoBehaviour
     public int idxscore;
     public int rankidx;
     public int rank=0;
-
+    public bool moveEnd;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +46,7 @@ public class ShutterControll : MonoBehaviour
         if (transform.position.y <= endPos.y)
         {
             vel = Vector3.zero;
+            moveEnd = true;
             ScoreSort();
             GetComponent<sceneMove>().NoFadeChange();
         }
@@ -60,6 +61,7 @@ public class ShutterControll : MonoBehaviour
         endPos = new Vector3(0, 960, 0);
         if (Mathf.Abs(transform.position.y) >= endPos.y)
         {
+            moveEnd = true;
             vel = Vector3.zero;
         }
 
