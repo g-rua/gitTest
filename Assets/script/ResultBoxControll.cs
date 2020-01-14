@@ -22,10 +22,10 @@ public class ResultBoxControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(Input.GetKeyDown(KeyCode.Return))
-        {
-            BoxOpen();
-        }
+       //if(Input.GetKeyDown(KeyCode.Return))
+       // {
+       //     BoxOpen();
+       // }
 
 
     }
@@ -39,7 +39,8 @@ public class ResultBoxControll : MonoBehaviour
         {
             if (!resultItemPop)
             {
-                GameObject.Instantiate(bom, itemPopPos.position, transform.rotation);
+                item = bom;
+                GameObject.Instantiate(item, itemPopPos.position, transform.rotation);
                 resultItemPop = true;
             }
         }
