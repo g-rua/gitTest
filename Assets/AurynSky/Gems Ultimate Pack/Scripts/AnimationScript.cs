@@ -27,7 +27,8 @@ public class AnimationScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        startScale = transform.localScale;
+        endScale = startScale * 1.5f;
 	}
 	
 	// Update is called once per frame
