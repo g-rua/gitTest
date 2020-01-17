@@ -6,12 +6,26 @@ public class GameResultControll : MonoBehaviour
 {
     [SerializeField] ShutterControll shutter;
     [SerializeField] ResultBoxControll[] resultBoxes;
+    [SerializeField] GameObject[] jems;
     public static int gameStyle;
     public bool resultEnd;
+    private int[] listRank;
+    public List<int> ranks;
+    public int[] rank;
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < 4; i++)
+        {
+            ranks.Add(i);
+        }
+            int rankidx = 0;
+        while (ranks.Count > 0)
+        {
+            int idx = Random.Range(0, ranks.Count);
+            rank[rankidx++] = ranks[idx];
+            ranks.RemoveAt(idx);
+        }
     }
 
     // Update is called once per frame
@@ -42,4 +56,13 @@ public class GameResultControll : MonoBehaviour
             }
         }
     }
+
+    private GameObject rankSizeDia(int rankidx)
+    {
+        GameObject dia = jems[rankidx];
+
+        return dia;
+
+    }
+
 }
