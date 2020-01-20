@@ -9,7 +9,7 @@ public class ResultBoxControll : MonoBehaviour
     [SerializeField] ParticleSystem ps;
     [SerializeField] GameObject bom;
     [SerializeField] GameObject flower;
-    [SerializeField] GameObject item;
+    public GameObject item;
     [SerializeField] Transform itemPopPos;
     [SerializeField] ResultBoxCover coverScript;
     private bool resultItemPop;
@@ -39,8 +39,8 @@ public class ResultBoxControll : MonoBehaviour
         {
             if (!resultItemPop)
             {
-                item = bom;
-                GameObject.Instantiate(item, itemPopPos.position, transform.rotation);
+                //item = bom;
+                GameObject.Instantiate(item, itemPopPos.position, item.transform.rotation);
                 resultItemPop = true;
             }
         }

@@ -1,38 +1,66 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameResultControll : MonoBehaviour
 {
     [SerializeField] ShutterControll shutter;
     [SerializeField] ResultBoxControll[] resultBoxes;
+    [SerializeField] GameScoreManage[] ps;
     [SerializeField] GameObject[] jems;
+    [SerializeField] GameObject[] rankJems;
+    public List<int> score;
+    public List<int> score2;
     public static int gameStyle;
     public bool resultEnd;
     private int[] listRank;
     public List<int> ranks;
     public int[] rank;
+    public int maxidx;
+    public int idx;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 4; i++)
+        
+        for(int i=0;i<4;i++)
         {
-            ranks.Add(i);
+            score.Add(ps[i].gamePoint);
+            score2.Add(ps[i].gamePoint);
         }
-            int rankidx = 0;
-        while (ranks.Count > 0)
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    ranks.Add(i);
+        //}
+        idx = 0;
+        while (score.Count > 0)
         {
-            int idx = Random.Range(0, ranks.Count);
-            rank[rankidx++] = ranks[idx];
-            ranks.RemoveAt(idx);
+            maxidx = score.IndexOf(score.Max());
+            int idxscore = score.Max();
+            for (int i = 0; i < 4; i++)
+            {
+                if (score2[i] == idxscore)
+                {
+                    rankJems[i] = jems[idx];
+                    resultBoxes[i].item = jems[idx++];
+                }
+            }
+            //rankJems[maxidx] = jems[idx];
+            //resultBoxes[maxidx].item = jems[idx++];
+            score.RemoveAt(maxidx);
         }
+        //for(int i=0;i<4;i++)
+        //{
+        //    rankJems[i] = jems[rank[i]];
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
         shutter.ShutterOpen();
-        if(shutter.moveEnd)
+
+        if (shutter.moveEnd)
         {
             for (int i = 0; i < resultBoxes.Length; i++)
             {
