@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlockCounter : MonoBehaviour
 {
     [SerializeField] GameObject blocks;
+    [SerializeField] GameObject[] players;
     public int blockChildlens;
     public int redColorBlock;
     public int blueColorBlock;
@@ -31,6 +32,8 @@ public class BlockCounter : MonoBehaviour
                 redColorBlock++;
             }
         }
+        players[0].GetComponent<GameScoreManage>().gamePoint = blueColorBlock;
+        players[1].GetComponent<GameScoreManage>().gamePoint = redColorBlock;
 
     }
 }
