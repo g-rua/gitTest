@@ -5,6 +5,7 @@ using UnityEngine;
 public class LuckCube : MonoBehaviour
 {
     public int luckIndex;
+    private float speed=0.1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,10 @@ public class LuckCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+       if(transform.position.y<luckIndex*1.5f)
+        {
+            transform.position += new Vector3(0, speed, 0);
+        }
     }
 
     public void SetLuckIndex(int index)

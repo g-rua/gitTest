@@ -10,7 +10,7 @@ public class LuckTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetLuckCubeIndex();
+        //SetLuckCubeIndex();
     }
 
     // Update is called once per frame
@@ -20,7 +20,9 @@ public class LuckTest : MonoBehaviour
         {
             for (int i = 0; i < luckCube.transform.childCount; i++)
             {
-                luckCube.transform.GetChild(i).GetComponent<LuckCube>().SetPosition();
+                //luckCube.transform.GetChild(i).GetComponent<LuckCube>().SetPosition();
+                SetLuckCubeIndex();
+
             }
         }
     }
@@ -44,6 +46,7 @@ public class LuckTest : MonoBehaviour
             int index = luckIndexes[luckIndex];
             //取り出した数値をそれぞれのキューブに設定する
             luckCube.transform.GetChild(cubeIndex).GetComponent<LuckCube>().SetLuckIndex(index);
+            
             //重複しないように使った数値は消す
             luckIndexes.RemoveAt(luckIndex);
             //アクセスする子の数値を進める
