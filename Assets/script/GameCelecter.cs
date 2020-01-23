@@ -6,13 +6,22 @@ public class GameCelecter : MonoBehaviour
 {
 
     [SerializeField] Text gameNo;
+    [SerializeField] EmphasizeTheFrameByIndex frameIndex;
+    [SerializeField] Image manualImage;
+    [SerializeField] Sprite[] manualImageTexture;
+    [SerializeField] Transform gameList;
+    [SerializeField] Transform gameManual;
+    [SerializeField] Color[] listColor;
+    [SerializeField] Image[] manualColor;
+    [SerializeField] string[] gameName;
     public int gameVal=0;
     public int lastVal = 0;
+    public int celectVal=0;
+
     // Start is called before the first frame update
     void Start()
     {
-        gameVal = Random.Range(0, 3);
-        gameNo.text = gameVal.ToString();
+
         Debug.Log(GameScore.scoreA);
         Debug.Log(GameScore.scoreB);
         Debug.Log(GameControll.gameCount);
@@ -21,32 +30,68 @@ public class GameCelecter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            lastVal = gameVal;
-            gameVal = Random.Range(0, 3);
 
-            gameNo.text = gameVal.ToString();
-        }
-        //遊ぶゲームを乱数で決めて、それぞれのシーンに遷移
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            switch (gameVal)
-            {
-                case 0:
-                    GetComponent<FadeController>().FadeOut("game1");
-                    break;
-                case 1:
-                    GetComponent<FadeController>().FadeOut("game2");
-                    break;
-                case 2:
-                    GetComponent<FadeController>().FadeOut("game3");
-                    break;
-                default:
-                    GetComponent<FadeController>().FadeOut("title");
-                    break;
-            }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    lastVal = gameVal;
+        //    gameVal = Random.Range(0, 3);
 
+        //    gameNo.text = gameVal.ToString();
+        //}
+
+        switch (celectVal)
+        {
+            case 0:
+
+                CelectGame();
+                break;
+            case 1:
+                GameManual();
+                break;
+            default:
+                break;
         }
+
+        
     }
+
+    private void CelectGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            celectVal++;
+            gameList.gameObject.SetActive(false);
+            gameManual.gameObject.SetActive(true);
+            for (int i = 0; i < gameManual.childCount; i++)
+            {
+                gameManual.GetChild(i).GetComponent<AlphaControll>().Appear();
+            }
+        }
+        gameVal = frameIndex.gameIndex;
+    }
+
+    private void GameManual()
+    {
+        manualImage.sprite= manualImageTexture[gameVal];
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            celectVal--;
+            gameManual.gameObject.SetActive(false);
+            gameList.gameObject.SetActive(true);
+            //for (int i = 0; i < gameManual.childCount; i++)
+            //{
+            //    gameManual.GetChild(i).GetComponent<AlphaControll>().Erase();
+            //}
+        }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            GetComponent<FadeController>().FadeOut(gameName[gameVal]);
+        }
+        //for (int i = 0; i < gameManual.childCount; i++)
+        //{
+        //    gameManual.GetChild(i).GetComponent<AlphaControll>().Appear();
+        //}
+
+    }
+
 }
