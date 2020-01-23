@@ -6,6 +6,7 @@
 		//X方向に関するパラメータ
 		_XSpeed("XScrollSpeed",Range(-5,5)) = 0
 		_YSpeed("YScrollSpeed",Range(-5,5))=0
+	
     }
     SubShader
     {
@@ -40,6 +41,7 @@
             float4 _MainTex_ST;
 			float _XSpeed;
 			float _YSpeed;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -56,6 +58,7 @@
 				i.uv.y += _YSpeed * _Time;
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

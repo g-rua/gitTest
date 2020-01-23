@@ -48,11 +48,11 @@ public class EmphasizeTheFrameByIndex : MonoBehaviour
             if(i==gameIndex)
             {
                 flag = true;
-                col = Color.red;
+                //col = Color.red;
                 scale = new Vector3(1.3f, 1.3f, 1f);
             }
 
-            transform.GetChild(i).GetComponent<Image>().color = col;
+            //transform.GetChild(i).GetComponent<Image>().color = col;
             transform.GetChild(i).GetChild(1).gameObject.SetActive(flag);
             transform.GetChild(i).localScale = scale;
         }
