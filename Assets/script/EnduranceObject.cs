@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnduranceObject : MonoBehaviour
 {
-    [SerializeField] GameObject obj;
+    [SerializeField] GameObject[] obj;
     [SerializeField] GameObject enduranceObj;
     private int popCount;
     private int popTime;
@@ -22,11 +22,11 @@ public class EnduranceObject : MonoBehaviour
     {
         if(++popTimer>popTime)
         {
-            scale = new Vector3(Random.Range(0.5f, 4f), Random.Range(0.5f, 4f), Random.Range(0.5f, 4f));
-            enduranceObj = GameObject.Instantiate(obj, transform.position, Quaternion.identity);
+            scale = new Vector3(Random.Range(70, 200f), Random.Range(70f, 200f), Random.Range(70f, 200f));
+            enduranceObj = GameObject.Instantiate(obj[Random.Range(0,obj.Length)], transform.position, Quaternion.identity);
             enduranceObj.transform.localScale = scale;
             popTimer = 0;
-            popTime = Random.Range(0, 300);
+            popTime = Random.Range(0, 250);
         }
     }
 }

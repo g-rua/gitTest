@@ -18,10 +18,18 @@ public class GameManage : MonoBehaviour
     public int drawTime;
     public bool gameStart;
     public bool gameEnd;
+    public float numposY = 8.6f;
+    public bool rankSortFlag;
+    public string nextScene;
     // Start is called before the first frame update
     void Start()
     {
         fader.FadeIn();
+        for (int i = 0; i < rankScore.Length; i++)
+        {
+            //順位事の付加ポイントを格納しとく
+            rankScore[i] = 100 - (25 * i);
+        }
     }
 
     // Update is called once per frame
@@ -54,11 +62,19 @@ public class GameManage : MonoBehaviour
             {
                 chara.enabled = false;
             }
+            if(!rankSortFlag)
+            {
+
+                ScoreSort();
+                rankSortFlag = true;
             //ゲーム終了演出を始める
-            shutter.GetComponent<ShutterControll>().ShutterClose();
+            GetComponent<FadeController>().FadeOut(nextScene);
+            }
+
+
         }
         //ゲームタイムをオブジェクトとして生成する
-        gameCount.NumPop(drawTime, new Vector3(0.96f, 8.6f, -1.2f), false);
+        gameCount.NumPop(drawTime, new Vector3(0.96f, numposY, -1.2f), false);
         gameCount.gameObject.transform.rotation = Quaternion.Euler(45f, 0, 0);
     }
 
