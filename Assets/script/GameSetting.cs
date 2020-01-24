@@ -38,6 +38,7 @@ public class GameSetting : MonoBehaviour
     [SerializeField] Image initDrawImage;
     [SerializeField] Text initDrawText;
     [SerializeField] TitleImageControll[] tic;
+    [SerializeField] Transform[] blinkpos;
     // Start is called before the first frame update
     void Start()
     {
@@ -184,15 +185,16 @@ public class GameSetting : MonoBehaviour
         {
            blinkPanel.GetComponent<ImageBlink>().alpha = 1f;
         }
-        if (gameStyleIndex==0)
-        { 
-            blinkPanel.position = new Vector3(136f, 176.5f, 0f);
+        blinkPanel.position = blinkpos[gameStyleIndex].position;
+        //if (gameStyleIndex==0)
+        //{ 
+        //    blinkPanel.position = new Vector3(136f, 176.5f, 0f);
  
-        }
-        if(gameStyleIndex==1)
-        {
-            blinkPanel.position = new Vector3(415f, 176.5f, 0f);
-        }
+        //}
+        //if(gameStyleIndex==1)
+        //{
+        //    blinkPanel.position = new Vector3(415f, 176.5f, 0f);
+        //}
 
         //Debug.Log("GameStyleSetting");
 
@@ -233,12 +235,12 @@ public class GameSetting : MonoBehaviour
             GameResultControll.gameStyle = gameStyleIndex;
             if (gameStyleIndex == 0)
             {
-                ActiveFader("RandomGameCelecter");
+                ActiveFader("gameCelecter");
             }
 
             if(gameStyleIndex==1)
             {
-                ActiveFader("gameResult");
+                ActiveFader("gameCelecter");
             }
         }
         if (Input.GetKeyDown(KeyCode.Backspace))

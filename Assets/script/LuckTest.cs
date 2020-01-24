@@ -7,6 +7,9 @@ public class LuckTest : MonoBehaviour
     [SerializeField] GameObject luckCube;
     private int luckIndex;
     private List<int> luckIndexes =new List<int>();
+    public int time;
+    public int timer;
+    public bool upFlag;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +19,28 @@ public class LuckTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+
+
+        if(Input.GetKeyDown(KeyCode.Return))
         {
+            
             for (int i = 0; i < luckCube.transform.childCount; i++)
             {
                 //luckCube.transform.GetChild(i).GetComponent<LuckCube>().SetPosition();
                 SetLuckCubeIndex();
 
             }
+            upFlag = false;
         }
+
+        //if ((timer++) * Time.deltaTime > time)
+        //{
+        //    upFlag = true;
+        //}
+        //if (upFlag)
+        //{
+        //    timer = 0;
+        //}
     }
 
     private void SetLuckCubeIndex()

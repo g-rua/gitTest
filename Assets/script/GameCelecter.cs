@@ -57,6 +57,10 @@ public class GameCelecter : MonoBehaviour
 
     private void CelectGame()
     {
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            GetComponent<FadeController>().FadeOut("GameSetting");
+        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             celectVal++;
@@ -73,7 +77,7 @@ public class GameCelecter : MonoBehaviour
     private void GameManual()
     {
         manualImage.sprite= manualImageTexture[gameVal];
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Backspace))
         {
             celectVal--;
             gameManual.gameObject.SetActive(false);
