@@ -31,7 +31,7 @@ public class GameSetting : MonoBehaviour
     [SerializeField] GameObject fader;
     [SerializeField] Text settingText;
     [SerializeField] Text[] checkTexts;
-    [SerializeField] Transform checkTextParent;
+
     [SerializeField] Transform settingImages;
     [SerializeField] RectTransform blinkPanel;
     [SerializeField] NumberPop numberPop;
@@ -39,6 +39,13 @@ public class GameSetting : MonoBehaviour
     [SerializeField] Text initDrawText;
     [SerializeField] TitleImageControll[] tic;
     [SerializeField] Transform[] blinkpos;
+    [SerializeField] Sprite[] playerCountSprits;
+    [SerializeField] Sprite[] gameStyleSprits;
+    [SerializeField] Transform checkImageParent;
+    [SerializeField] Transform checkCountParent;
+    [SerializeField] Transform checkStyleParent;
+    [SerializeField] Transform checkGameCountParent;
+    [SerializeField] GameObject sonota;
     // Start is called before the first frame update
     void Start()
     {
@@ -137,7 +144,7 @@ public class GameSetting : MonoBehaviour
             //次の段階へ行くためにインクリメント
             settingIndex++;
         }
-        LimitIndex(ref playerIndex, 0, 3);
+        LimitIndex(ref playerIndex, 0, 1);
 
 
         ActiveImage(playerIndex,ref playerCountImages);
@@ -150,23 +157,27 @@ public class GameSetting : MonoBehaviour
         //ランダムで遊ぶか、自分で選んで遊ぶかを選ぶ
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if(gameStyleIndex==0)
-            {
+            //if(gameStyleIndex==0)
+            //{
                 settingIndex++;
-                checkTexts[1].text = "ランダム";
+                //checkTexts[1].text = "ランダム";
                 numberPop.gameObject.SetActive(true);
-            }
-            if (gameStyleIndex==1)
-            {
-                settingIndex += 2;
-                checkTexts[1].text = "自分で選択";
-                checkTexts[2].text = "自由";
-                DrawCheckText();
-            }
+            //}
+            //if (gameStyleIndex==1)
+            //{
+            //    settingIndex += 2;
+            //    checkTexts[1].text = "自分で選択";
+            //    checkTexts[2].text = "自由";
+
+            //    DrawCheckText();
+            //    checkImageParent.gameObject.SetActive(true);
+
+            //}
             for (int i = 0; i <= playerIndex; i++)
             {
                 humanPoppers[i].GetComponent<SettingHumanPop>().HumanPop(humanDest[i]);
             }
+
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -175,6 +186,8 @@ public class GameSetting : MonoBehaviour
                 fallFloor[i].GetComponent<FallFloorMove>().BoShoot();
             }
             lastPlayerIndex = playerIndex;
+
+
             settingIndex--;
         }
         //直前のインデクスの取り出し
@@ -208,16 +221,20 @@ public class GameSetting : MonoBehaviour
 
             SwitchForGamePlaySettingIndex(gamePlaySettingIndex);
             checkTexts[2].text = gamePlaySettingIndex.ToString();
+
             //PlayCountSetting(2, playerCountButton.Length);
             //ChangeSprite();
             settingIndex++;
             numberPop.gameObject.SetActive(false);
-            DrawCheckText();
+            sonota.SetActive(true);
+            checkImageParent.gameObject.SetActive(true);
+
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             gamePlaySettingIndex = 0;
             numberPop.gameObject.SetActive(false);
+
 
             settingIndex--;
         }
@@ -229,7 +246,7 @@ public class GameSetting : MonoBehaviour
     private void CheckGameSetting()
     {
         //この設定でよいかを確認する場面
-        Debug.Log("CheckGameSetting");
+        //Debug.Log("CheckGameSetting");
         if(Input.GetKeyDown(KeyCode.Return))
         {
             GameResultControll.gameStyle = gameStyleIndex;
@@ -245,18 +262,23 @@ public class GameSetting : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            if (gameStyleIndex == 0)
-            {
-                settingIndex--;
-            }
-            if (gameStyleIndex == 1)
-            {
-                settingIndex -= 2;
-            }
             settingImages.gameObject.SetActive(true);
             numberPop.gameObject.SetActive(true);
-            UnDrawCheckText();
+
+            //if (gameStyleIndex == 0)
+            //{
+            settingIndex--;
+            //}
+            //if (gameStyleIndex == 1)
+            //{
+            //    settingIndex -= 2;
+            //}
+            sonota.SetActive(false);
+            checkImageParent.gameObject.SetActive(false);
         }
+        ActiveImage(playerIndex, ref checkCountParent);
+        ActiveImage(gameStyleIndex, ref checkStyleParent);
+        ActiveImage(gamePlaySettingIndex, ref checkGameCountParent);
     }
 
     private void LimitIndex(ref int index,int min,int max)
@@ -298,21 +320,13 @@ public class GameSetting : MonoBehaviour
             
     }
 
-    private void DrawCheckText()
-    {
-        for(int i=0;i<checkTextParent.childCount;i++)
-        {
-            checkTextParent.GetChild(i).GetComponent<Text>().color =new Color(0,0,0,255);
-        }
-    }
 
-    private void UnDrawCheckText()
-    {
-        for (int i = 0; i < checkTextParent.childCount; i++)
-        {
-            checkTextParent.GetChild(i).GetComponent<Text>().color = new Color(0, 0, 0, 0);
-        }
-    }
+
+
+
+
+
+
 
 
     private void ActiveImage(int index,ref Transform obj)

@@ -23,10 +23,15 @@ public class GameResultControll : MonoBehaviour
     void Start()
     {
         
-        for(int i=0;i<4;i++)
+        for(int i=0;i<2;i++)
         {
-            score.Add(ps[i].gamePoint);
-            score2.Add(ps[i].gamePoint);
+            score.Add(Random.Range(0,500)/*ps[i].gamePoint*/);
+            //score2.Add(ps[i].gamePoint);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            //score.Add(Random.Range(0, 500)/*ps[i].gamePoint*/);
+            score2.Add(score[i]);
         }
         //for (int i = 0; i < 4; i++)
         //{
@@ -37,7 +42,7 @@ public class GameResultControll : MonoBehaviour
         {
             maxidx = score.IndexOf(score.Max());
             int idxscore = score.Max();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (score2[i] == idxscore)
                 {
@@ -53,19 +58,21 @@ public class GameResultControll : MonoBehaviour
         //{
         //    rankJems[i] = jems[rank[i]];
         //}
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        shutter.ShutterOpen();
+        //shutter.ShutterOpen();
 
-        if (shutter.moveEnd)
+        //if (shutter.moveEnd)
+        //{
+
+        //}
+        for (int i = 0; i < resultBoxes.Length; i++)
         {
-            for (int i = 0; i < resultBoxes.Length; i++)
-            {
-                resultBoxes[i].BoxOpen();
-            }
+            resultBoxes[i].BoxOpen();
         }
         if (resultEnd)
         {
