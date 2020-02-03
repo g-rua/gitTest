@@ -2693,8 +2693,49 @@ PrefabInstance:
       propertyPath: nextScene
       value: gameCelecter
       objectReference: {fileID: 0}
+    - target: {fileID: 886171621605239897, guid: 6b22de283863c3241a8ce7dc34a7a2ba,
+        type: 3}
+      propertyPath: gameEndPattern
+      value: 
+      objectReference: {fileID: 886171621934506005}
+    - target: {fileID: 886171621605239897, guid: 6b22de283863c3241a8ce7dc34a7a2ba,
+        type: 3}
+      propertyPath: defaultTime
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b22de283863c3241a8ce7dc34a7a2ba, type: 3}
+--- !u!1 &886171621934506003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 886171621605239892, guid: 6b22de283863c3241a8ce7dc34a7a2ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 886171621934506002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &886171621934506004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 886171621605239897, guid: 6b22de283863c3241a8ce7dc34a7a2ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 886171621934506002}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886171621934506003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58aa852670c503448c40ae3df3ba5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &886171621934506005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886171621934506003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402540cb64cc4489576b08923feeae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManage: {fileID: 886171621934506004}
 --- !u!1001 &1509747676360386691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3332,6 +3373,11 @@ PrefabInstance:
       propertyPath: initPos.x
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8507817260390885883, guid: 4b67caf3a943d5a448f780cff7eef7e8,
+        type: 3}
+      propertyPath: sceneName
+      value: gameCelecter
+      objectReference: {fileID: 0}
     - target: {fileID: 8507817260390885879, guid: 4b67caf3a943d5a448f780cff7eef7e8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3356,11 +3402,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507817260390885883, guid: 4b67caf3a943d5a448f780cff7eef7e8,
-        type: 3}
-      propertyPath: sceneName
-      value: gameCelecter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b67caf3a943d5a448f780cff7eef7e8, type: 3}

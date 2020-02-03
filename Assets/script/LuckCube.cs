@@ -15,7 +15,7 @@ public class LuckCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(transform.position.y<luckIndex*1.5f)
+       if(transform.position.y<luckIndex*3.5f)
         {
             transform.position += new Vector3(0, speed, 0);
         }
