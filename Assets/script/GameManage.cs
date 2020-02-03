@@ -12,19 +12,32 @@ public class GameManage : MonoBehaviour
     [SerializeField] NumberPop gameCount;
     [SerializeField] NumberPop team1Count;
     [SerializeField] NumberPop team2Count;
+    [SerializeField] GameEndPattern gameEndPattern;
     public int[] rankScore;
     public List<int> gamePointList;
     public int gameTime;
     public int drawTime;
+    public int defaultTime;
     public bool gameStart;
     public bool gameEnd;
     public float numposY = 8.6f;
     public bool rankSortFlag;
     public string nextScene;
+    public enum GameType
+    {
+        point,
+        survival
+
+    }
+    public GameType type;
+    public bool camMove;
+    public int stageindex;
+    public int maxStageindex;
     // Start is called before the first frame update
     void Start()
     {
         fader.FadeIn();
+        drawTime = defaultTime;
         for (int i = 0; i < rankScore.Length; i++)
         {
             //順位事の付加ポイントを格納しとく
@@ -52,7 +65,18 @@ public class GameManage : MonoBehaviour
             //ゲームタイムが０になったら終了処理用のフラグを立てる
             if (drawTime < 0)
             {
-                gameEnd = true;
+                //gameEnd = true;
+                //gameEndPattern.TimeProccesing(ref drawTime,ref defaultTime,ref gameEnd/*,type*/);
+                switch (type)
+                {
+                    case GameType.point:
+                        gameEndPattern.PointTimeProccesing(ref drawTime, ref gameEnd);
+                        break;
+                    case GameType.survival:
+                        gameEndPattern.SurvivalTimeProccesing(ref drawTime, ref defaultTime, stageindex, maxStageindex,ref gameEnd,ref camMove);
+                        break;
+                }
+
             }
         }
         if (gameEnd)

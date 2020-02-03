@@ -43,13 +43,13 @@ public class EmphasizeTheFrameByIndex : MonoBehaviour
         for(int i=0;i<transform.childCount;i++)
         {
             Color col = new Color(123f,255f,76f,255f);
-            Vector3 scale = new Vector3(1, 1, 1);
+            Vector3 scale = new Vector3(2.5f, 2.5f, 1);
             bool flag = false;
             if(i==gameIndex)
             {
                 flag = true;
                 //col = Color.red;
-                scale = new Vector3(1.3f, 1.3f, 1f);
+                scale = new Vector3(3f, 3f, 1f);
             }
 
             //transform.GetChild(i).GetComponent<Image>().color = col;
