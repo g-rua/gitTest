@@ -13,6 +13,9 @@ public class GameManage : MonoBehaviour
     [SerializeField] NumberPop team1Count;
     [SerializeField] NumberPop team2Count;
     [SerializeField] GameEndPattern gameEndPattern;
+    [SerializeField] Transform[] campos;
+    [SerializeField] P1InputControll p1;
+    [SerializeField] P2InputControll p2;
     public int[] rankScore;
     public List<int> gamePointList;
     public int gameTime;
@@ -30,9 +33,12 @@ public class GameManage : MonoBehaviour
 
     }
     public GameType type;
-    public bool camMove;
+    //public bool camMove;
     public int stageindex;
     public int maxStageindex;
+    public bool waitflag;
+    public int waittimer;
+    public int waittime;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,8 +60,12 @@ public class GameManage : MonoBehaviour
         }
         if (gameStart)
         {
+            if (!waitflag)
+            {
             //ゲームタイムを進めていく
             gameTime++;
+            }
+
             //６０フレーム毎に本当の時間を減らす
             if (gameTime > 60)
             {
@@ -73,10 +83,29 @@ public class GameManage : MonoBehaviour
                         gameEndPattern.PointTimeProccesing(ref drawTime, ref gameEnd);
                         break;
                     case GameType.survival:
-                        gameEndPattern.SurvivalTimeProccesing(ref drawTime, ref defaultTime, stageindex, maxStageindex,ref gameEnd,ref camMove);
+                        stageindex++;
+                        waitflag = true;
+                        gameEndPattern.SurvivalTimeProccesing(ref drawTime, ref defaultTime, stageindex, maxStageindex,ref gameEnd);
                         break;
                 }
 
+            }
+            if(waitflag)
+            {
+                p1.enabled = false;
+                p2.enabled = false;
+                if (waittimer++>waittime)
+                {
+                    p1.enabled = true;
+                    p2.enabled = true;
+                    waitflag = false;
+                    waittimer = 0;
+                    if (campos.Length > 0)
+                    {
+                        transform.position = campos[stageindex].position;
+                    }
+
+                }
             }
         }
         if (gameEnd)
