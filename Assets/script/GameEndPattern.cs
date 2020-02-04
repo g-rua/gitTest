@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameEndPattern : MonoBehaviour
 {
     [SerializeField] GameManage gameManage;
-
+    [SerializeField] FallCameraMove fcm;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +25,11 @@ public class GameEndPattern : MonoBehaviour
         time = 0;
     }
 
-    public void SurvivalTimeProccesing(ref int time, ref int defTime, int stageindex, int maxstageindex, ref bool flag, ref bool camflag)
+    public void SurvivalTimeProccesing(ref int time, ref int defTime, int stageindex, int maxstageindex, ref bool flag)
     {
-        if(stageindex<maxstageindex)
+        if(stageindex<maxstageindex+1)
         {
             time = defTime;
-            camflag = true;
         }
         else
         {

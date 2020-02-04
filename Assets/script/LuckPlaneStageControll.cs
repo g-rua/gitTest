@@ -6,6 +6,7 @@ public class LuckPlaneStageControll : MonoBehaviour
 {
     [SerializeField] GameObject[] stage;
     private int stageIndex = 0;
+    [SerializeField] GameManage gm;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,15 +23,15 @@ public class LuckPlaneStageControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(gm.waitflag)
         {
-            for(int i=0;i<stage[stageIndex].transform.childCount;i++)
+            for(int i=0;i<stage[gm.stageindex-1].transform.childCount;i++)
             {
-                stage[stageIndex].transform.GetChild(i).GetComponent<LuckPlaneDesolve>().enabled = true;
+                stage[gm.stageindex-1].transform.GetChild(i).GetComponent<LuckPlaneDesolve>().enabled = true;
             }
-            stage[stageIndex].GetComponent<FallOrBom>().enabled = true;
+            stage[gm.stageindex-1].GetComponent<FallOrBom>().enabled = true;
 
-            stageIndex++;
+            //stageIndex++;
         }
 
     }
