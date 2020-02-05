@@ -5,7 +5,10 @@ using UnityEngine.UI;
 public class EmphasizeTheFrameByIndex : MonoBehaviour
 {
     public int gameIndex;
-
+    public bool inputDelay;
+    public int waittime;
+    public int waitTimer;
+    public int lastindex;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +18,33 @@ public class EmphasizeTheFrameByIndex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+
+        //if(Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    gameIndex++;
+        //}
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    gameIndex--;
+        //}
+        //gameIndex += (int)Input.GetAxis("D_Pad_H");
+        if (lastindex != gameIndex)
         {
-            gameIndex++;
+            waitTimer = 15;
+            inputDelay = true;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        lastindex = gameIndex;
+        if (!inputDelay)
         {
-            gameIndex--;
+            gameIndex += (int)(Input.GetAxis("D_Pad_H"));
+            gameIndex += (int)(Input.GetAxis("D_Pad_V")) * 3;
+        }
+        else
+        {
+            if (waitTimer-- < 0)
+            {
+                inputDelay = false;
+            }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {

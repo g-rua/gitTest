@@ -46,6 +46,13 @@ public class GameSetting : MonoBehaviour
     [SerializeField] Transform checkStyleParent;
     [SerializeField] Transform checkGameCountParent;
     [SerializeField] GameObject sonota;
+    private string decide = "joystick button 0";
+    private string cancel = "joystick button 1";
+    public float dph;
+    public bool inputDelay;
+    public int waittime;
+    public int waitTimer;
+    public int lastindex;
     // Start is called before the first frame update
     void Start()
     {
@@ -118,7 +125,7 @@ public class GameSetting : MonoBehaviour
     private void PlayerCountSetting()
     {
         //何人で遊ぶかを選択
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(decide))
         {
             //人数の決定
             playerCount = playerIndex+1;
@@ -155,7 +162,7 @@ public class GameSetting : MonoBehaviour
     {
        
         //ランダムで遊ぶか、自分で選んで遊ぶかを選ぶ
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(decide))
         {
             //if(gameStyleIndex==0)
             //{
@@ -179,7 +186,7 @@ public class GameSetting : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(cancel))
         {
             for (int i = 0; i <= playerIndex; i++)
             {
@@ -216,7 +223,7 @@ public class GameSetting : MonoBehaviour
     private void GameCountSetting()
     {
         //何回遊ぶかを選ぶ
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(decide))
         {
 
             SwitchForGamePlaySettingIndex(gamePlaySettingIndex);
@@ -230,7 +237,7 @@ public class GameSetting : MonoBehaviour
             checkImageParent.gameObject.SetActive(true);
 
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(cancel))
         {
             gamePlaySettingIndex = 0;
             numberPop.gameObject.SetActive(false);
@@ -247,7 +254,7 @@ public class GameSetting : MonoBehaviour
     {
         //この設定でよいかを確認する場面
         //Debug.Log("CheckGameSetting");
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(decide))
         {
             GameResultControll.gameStyle = gameStyleIndex;
             if (gameStyleIndex == 0)
@@ -260,7 +267,7 @@ public class GameSetting : MonoBehaviour
                 ActiveFader("gameCelecter");
             }
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(cancel))
         {
             settingImages.gameObject.SetActive(true);
             numberPop.gameObject.SetActive(true);
@@ -284,22 +291,42 @@ public class GameSetting : MonoBehaviour
     private void LimitIndex(ref int index,int min,int max)
     {
         //左右を押されたときに数値を加減
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            
             index++;
-        }
+    }
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             index--;
         }
-        //それぞれの最大最小を超えたら入れ替える
-        if(index>max)
+        dph = Input.GetAxis("D_Pad_H");
+        if(lastindex!=index)
         {
-            index = min;
+            waitTimer = 15;
+            inputDelay = true;
+        }
+        lastindex = index;
+        if (!inputDelay)
+        {
+            index += (int)(Input.GetAxis("D_Pad_H"));
+        }
+        else
+        {
+            if(waitTimer--<0)
+            {
+                inputDelay = false;
+            }
+        }
+        //lastindex = index;
+        //それぞれの最大最小を超えたら入れ替える
+        if (index>max)
+        {
+            index = max;
         }
         if(index<min)
         {
-            index = max;
+            index = min;
         }
     }
 

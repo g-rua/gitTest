@@ -278,6 +278,11 @@ PrefabInstance:
       propertyPath: gameEndPattern
       value: 
       objectReference: {fileID: 402954563}
+    - target: {fileID: 886171621605239897, guid: 6b22de283863c3241a8ce7dc34a7a2ba,
+        type: 3}
+      propertyPath: defaultTime
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b22de283863c3241a8ce7dc34a7a2ba, type: 3}
 --- !u!1 &402954561 stripped
@@ -311,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManage: {fileID: 402954562}
+  fcm: {fileID: 0}
 --- !u!1 &496632677
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +786,7 @@ GameObject:
   - component: {fileID: 1042739267}
   - component: {fileID: 1042739266}
   - component: {fileID: 1042739265}
+  - component: {fileID: 1042739269}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -880,6 +887,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042739263}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1042739269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042739263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68fce3d77c8246749bce8cb4d1ff4a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm: {fileID: 402954562}
+  or: {fileID: 1042739265}
+  rotSpeed: 3
 --- !u!1 &1106534990
 GameObject:
   m_ObjectHideFlags: 0

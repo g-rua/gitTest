@@ -20,20 +20,20 @@ public class P1InputControll : MonoBehaviour
         //jumpFlame = cc.jumpFlame;
         haveObj = cc.haveObj;
         Ground = cc.g;
-        cc.SetDirection(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+        cc.SetDirection(Input.GetAxis("PadVertical"), Input.GetAxis("PadHorizontal"));
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown("joystick 1 button 1"))
         {
             cc.ItemCarry();
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            itemAction.ItemAction(haveObj);
-        }
+        //if (Input.GetKeyDown("ItemAction"))
+        //{
+        //    itemAction.ItemAction(haveObj);
+        //}
 
         //ジャンプの区別
-        if (Input.GetKey(KeyCode.Space) && Ground)
+        if (Input.GetButton("PadJump") && Ground)
         {
             //小ジャンプか大ジャンプを区別するためにインクリメント
             cc.jumpFlame++;
@@ -46,13 +46,15 @@ public class P1InputControll : MonoBehaviour
             }
         }
 
-        //即離した場合
-        if (Input.GetKeyUp(KeyCode.Space) && Ground)
-        {
-            Debug.Log("harf");
-            cc.DecideJumpPower(cc.jumpFlame);
-            cc.jumpFlame = 0;
-        }
+        ////即離した場合
+        //if (Input.GetKeyUp("PadJump") && Ground)
+        //{
+        //    Debug.Log("harf");
+        //    cc.DecideJumpPower(cc.jumpFlame);
+        //    cc.jumpFlame = 0;
+        //}
+
+
 
     }
 

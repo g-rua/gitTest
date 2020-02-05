@@ -17,7 +17,8 @@ public class GameCelecter : MonoBehaviour
     public int gameVal=0;
     public int lastVal = 0;
     public int celectVal=0;
-
+    private string decide = "joystick button 0";
+    private string cancel = "joystick button 1";
     // Start is called before the first frame update
     void Start()
     {
@@ -57,11 +58,11 @@ public class GameCelecter : MonoBehaviour
 
     private void CelectGame()
     {
-        if(Input.GetKeyDown(KeyCode.Backspace))
+        if(Input.GetKeyDown(cancel))
         {
             GetComponent<FadeController>().FadeOut("GameSetting");
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(decide))
         {
             celectVal++;
             gameList.gameObject.SetActive(false);
@@ -77,7 +78,7 @@ public class GameCelecter : MonoBehaviour
     private void GameManual()
     {
         manualImage.sprite= manualImageTexture[gameVal];
-        if(Input.GetKeyDown(KeyCode.Backspace))
+        if(Input.GetKeyDown(cancel))
         {
             celectVal--;
             gameManual.gameObject.SetActive(false);
@@ -87,7 +88,7 @@ public class GameCelecter : MonoBehaviour
             //    gameManual.GetChild(i).GetComponent<AlphaControll>().Erase();
             //}
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(decide))
         {
             GetComponent<FadeController>().FadeOut(gameName[gameVal]);
         }

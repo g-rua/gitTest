@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class LuckTest : MonoBehaviour
 {
+    [SerializeField] GameManage gm;
     [SerializeField] GameObject luckCube;
     private int luckIndex;
     private List<int> luckIndexes =new List<int>();
     public int time;
     public int timer;
     public bool upFlag;
+    [SerializeField] Transform camt;
     // Start is called before the first frame update
     void Start()
     {
+        //リストにキューブに格納する用の数値を設定
+        for (int i = 0; i < luckCube.transform.childCount; i++)
+        {
+            luckIndexes.Add(i);
+        }
         //SetLuckCubeIndex();
     }
 
@@ -21,16 +28,24 @@ public class LuckTest : MonoBehaviour
     {
 
 
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(upFlag)
         {
-            
+            if(camt.position.y<34)
+            {
+                camt.position += new Vector3(0, 0.2f, -0.1f);
+            }
+              //upFlag = false;          
             for (int i = 0; i < luckCube.transform.childCount; i++)
             {
                 //luckCube.transform.GetChild(i).GetComponent<LuckCube>().SetPosition();
                 SetLuckCubeIndex();
 
             }
-            upFlag = false;
+
+        }
+        if((gm.drawTime<7)&&!upFlag)
+        {
+            upFlag = true;
         }
 
         //if ((timer++) * Time.deltaTime > time)
@@ -46,11 +61,7 @@ public class LuckTest : MonoBehaviour
     private void SetLuckCubeIndex()
     {
 
-        //リストにキューブに格納する用の数値を設定
-        for(int i=0;i<luckCube.transform.childCount;i++)
-        {
-            luckIndexes.Add(i);
-        }
+
         //子にアクセスするための数値
         int cubeIndex = 0;
         //リストにある分回す
