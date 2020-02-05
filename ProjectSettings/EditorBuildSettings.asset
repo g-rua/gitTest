@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/gamecelecter/gamecelecter.unity
     guid: fafc0e110fab1fa479da9a14354f34a7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RandomGameCelecter/RandomGameCelecter.unity
     guid: b38c99b1474a36e4baa5d75f0829334d
   - enabled: 1
