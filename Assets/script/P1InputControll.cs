@@ -22,7 +22,7 @@ public class P1InputControll : MonoBehaviour
         Ground = cc.g;
         cc.SetDirection(Input.GetAxis("PadVertical"), Input.GetAxis("PadHorizontal"));
 
-        if (Input.GetKeyDown("joystick 1 button 1"))
+        if (Input.GetButtonDown("Catch"))
         {
             cc.ItemCarry();
         }

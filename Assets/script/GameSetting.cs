@@ -125,7 +125,7 @@ public class GameSetting : MonoBehaviour
     private void PlayerCountSetting()
     {
         //何人で遊ぶかを選択
-        if(Input.GetKeyDown(decide))
+        if(Input.GetButtonDown("optionNext"))
         {
             //人数の決定
             playerCount = playerIndex+1;
@@ -162,7 +162,7 @@ public class GameSetting : MonoBehaviour
     {
        
         //ランダムで遊ぶか、自分で選んで遊ぶかを選ぶ
-        if (Input.GetKeyDown(decide))
+        if (Input.GetButtonDown("optionNext"))
         {
             //if(gameStyleIndex==0)
             //{
@@ -186,7 +186,7 @@ public class GameSetting : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyDown(cancel))
+        if (Input.GetButtonDown("optionBack"))
         {
             for (int i = 0; i <= playerIndex; i++)
             {
@@ -223,7 +223,7 @@ public class GameSetting : MonoBehaviour
     private void GameCountSetting()
     {
         //何回遊ぶかを選ぶ
-        if (Input.GetKeyDown(decide))
+        if (Input.GetButtonDown("optionNext"))
         {
 
             SwitchForGamePlaySettingIndex(gamePlaySettingIndex);
@@ -237,7 +237,7 @@ public class GameSetting : MonoBehaviour
             checkImageParent.gameObject.SetActive(true);
 
         }
-        if (Input.GetKeyDown(cancel))
+        if (Input.GetButtonDown("optionBack"))
         {
             gamePlaySettingIndex = 0;
             numberPop.gameObject.SetActive(false);
@@ -254,7 +254,7 @@ public class GameSetting : MonoBehaviour
     {
         //この設定でよいかを確認する場面
         //Debug.Log("CheckGameSetting");
-        if(Input.GetKeyDown(decide))
+        if(Input.GetButtonDown("optionNext"))
         {
             GameResultControll.gameStyle = gameStyleIndex;
             if (gameStyleIndex == 0)
@@ -267,7 +267,7 @@ public class GameSetting : MonoBehaviour
                 ActiveFader("gameCelecter");
             }
         }
-        if (Input.GetKeyDown(cancel))
+        if (Input.GetButtonDown("optionBack"))
         {
             settingImages.gameObject.SetActive(true);
             numberPop.gameObject.SetActive(true);
