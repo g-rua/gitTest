@@ -58,11 +58,11 @@ public class GameCelecter : MonoBehaviour
 
     private void CelectGame()
     {
-        if(Input.GetKeyDown(cancel))
+        if(Input.GetButtonDown("optionBack"))
         {
             GetComponent<FadeController>().FadeOut("GameSetting");
         }
-        if (Input.GetKeyDown(decide))
+        if (Input.GetButtonDown("optionNext"))
         {
             celectVal++;
             gameList.gameObject.SetActive(false);
@@ -78,7 +78,7 @@ public class GameCelecter : MonoBehaviour
     private void GameManual()
     {
         manualImage.sprite= manualImageTexture[gameVal];
-        if(Input.GetKeyDown(cancel))
+        if(Input.GetButtonDown("optionBack"))
         {
             celectVal--;
             gameManual.gameObject.SetActive(false);
@@ -88,7 +88,7 @@ public class GameCelecter : MonoBehaviour
             //    gameManual.GetChild(i).GetComponent<AlphaControll>().Erase();
             //}
         }
-        if (Input.GetKeyDown(decide))
+        if (Input.GetButtonDown("optionNext"))
         {
             GetComponent<FadeController>().FadeOut(gameName[gameVal]);
         }
